@@ -53,8 +53,7 @@
                               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtCustomer" min="-2" pref="259" max="-2" attributes="0"/>
-                          <Component id="txtOrderID" min="-2" pref="259" max="-2" attributes="0"/>
+                          <Component id="txtCustomer" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
                           <Component id="txtDate" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           <Component id="txtTotal" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           <Component id="txtNote" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
@@ -81,8 +80,6 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtOrderID" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtCustomer" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtDate" min="-2" max="-2" attributes="0"/>
@@ -90,9 +87,9 @@
                   <Component id="txtTotal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtNote" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -107,11 +104,6 @@
               <Color blue="42" green="36" red="14" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ADD ORDER"/>
-          </Properties>
-        </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtOrderID">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Order ID ..."/>
           </Properties>
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtCustomer">
