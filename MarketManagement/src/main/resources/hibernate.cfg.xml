@@ -7,7 +7,7 @@
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/Market?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/Market2?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8</property>
         <property name="connection.username">root</property>
         <property name="connection.password"></property>
       <!-- JDBC connection pool (use the built-in) -->
@@ -18,9 +18,11 @@
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> 
         <!-- Show all executed SQL to console -->
         <property name="show_sql">true</property>
-        <mapping class="hibernateMarket.DAL.Category" />
-        <mapping class="hibernateMarket.DAL.Vegetable" />
-        
+        <mapping class="hibernateMarket.DAL.Order" />
+        <mapping class="hibernateMarket.DAL.OrderDetail" />
+        <mapping class="hibernateMarket.DAL.Customers" />
+
+
     </session-factory>
 </hibernate-configuration>
 
