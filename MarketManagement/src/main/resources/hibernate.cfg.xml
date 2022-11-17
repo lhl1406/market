@@ -22,7 +22,6 @@
         <mapping class="hibernateMarket.DAL.OrderDetail" />
         <mapping class="hibernateMarket.DAL.Customers" />
 
-
     </session-factory>
 </hibernate-configuration>
 
