@@ -81,6 +81,11 @@ public class VegetableAddForm extends javax.swing.JFrame {
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
         btnBack.setColorOver(new java.awt.Color(210, 224, 191));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         txtUnit.setText("Unit ...");
         txtUnit.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +222,10 @@ public class VegetableAddForm extends javax.swing.JFrame {
     private void txtLinkImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLinkImageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLinkImageActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
