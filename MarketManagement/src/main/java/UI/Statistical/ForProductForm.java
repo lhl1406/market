@@ -54,6 +54,16 @@ public class ForProductForm extends javax.swing.JFrame {
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
         btnBack.setColorOver(new java.awt.Color(210, 224, 191));
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         tbStatistical.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,6 +215,14 @@ public class ForProductForm extends javax.swing.JFrame {
     private void txtToTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToTimeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtToTimeActionPerformed
+
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+         this.setVisible(false);
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+         this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
