@@ -4,6 +4,8 @@
  */
 package UI.Order;
 
+import UI.OrderDetail.OrderDetailForm;
+
 /**
  *
  * @author 84378
@@ -52,6 +54,16 @@ public class OrderForm extends javax.swing.JFrame {
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
         btnBack.setColorOver(new java.awt.Color(210, 224, 191));
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         tbOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,6 +102,11 @@ public class OrderForm extends javax.swing.JFrame {
         btnAdd.setColorClick(new java.awt.Color(43, 147, 72));
         btnAdd.setColorOver(new java.awt.Color(128, 185, 24));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/edit.png"))); // NOI18N
         btnEdit.setText("EDIT");
@@ -98,6 +115,11 @@ public class OrderForm extends javax.swing.JFrame {
         btnEdit.setColorClick(new java.awt.Color(42, 111, 151));
         btnEdit.setColorOver(new java.awt.Color(97, 165, 194));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/delete.png"))); // NOI18N
         btnDelete.setText("DELETE");
@@ -114,6 +136,11 @@ public class OrderForm extends javax.swing.JFrame {
         btnView.setColorClick(new java.awt.Color(137, 194, 217));
         btnView.setColorOver(new java.awt.Color(169, 214, 229));
         btnView.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -190,6 +217,29 @@ public class OrderForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+         this.setVisible(false);
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        OrderAddForm ordAdd = new OrderAddForm();
+        ordAdd.setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        OrderEditForm ordEdit = new OrderEditForm();
+        ordEdit.setVisible(true);
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        OrderDetailForm ordDetail = new OrderDetailForm();
+        ordDetail.setVisible(true);
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
