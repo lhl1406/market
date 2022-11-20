@@ -1,21 +1,65 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package UI.Category;
 
-/**
- *
- * @author 84378
- */
-public class CategoryForm extends javax.swing.JFrame {
+import BLL.CategoryBLL;
+import hibernateMarket.DAL.Category;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
-    /**
-     * Creates new form CategoryForm
-     */
+public final class CategoryForm extends javax.swing.JFrame {
+
+    private CategoryBLL cateBLL;
     public CategoryForm() {
+        this.setTitle("Category");
         initComponents();
+        cateBLL = new CategoryBLL();
+        
+        try {
+            listCategory();
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    public void loadCategoryTable()
+    {
+        List listCate = cateBLL.loadCategory();
+        Object[][] datamodel;
+        datamodel = cateBLL.convertList(listCate);
+        String[] title = {"TT", "Name", "Description"};
+        DefaultTableModel model = new DefaultTableModel(datamodel, title);
+        tbCategory.setModel(model);
+    }
+    private void listCategory() throws SQLException {
+        List list = cateBLL.loadCategory();
+        DefaultTableModel model = convertCategory(list);
+        tbCategory.setModel(model);
+    }
+    public void initTable()throws SQLException {
+        try {
+            listCategory();
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private DefaultTableModel convertCategory(List list) {
+        String[] columnNames = {"TT", "Name", "Description"};
+        Object[][] data = new Object[list.size()][3];
+        for (int i = 0; i < list.size(); i++) {
+            Category t = (Category) list.get(i);
+            data[i][0] = t.getCatagoryID();
+            data[i][1] = t.getName();
+            data[i][2] = t.getDescription();
+        }
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        return model;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +75,7 @@ public class CategoryForm extends javax.swing.JFrame {
         btnBack = new UI.UI_Item.button.MyButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbCategory = new UI.UI_Item.table.TableDark();
-        txtSeach = new UI.UI_Item.textfield.SearchField();
+        txtSearch = new UI.UI_Item.textfield.SearchField();
         btnSearch = new UI.UI_Item.button.MyButton();
         btnAdd = new UI.UI_Item.button.MyButton();
         btnEdit = new UI.UI_Item.button.MyButton();
@@ -45,7 +89,6 @@ public class CategoryForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
         jLabel1.setText("CATEGORY");
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
@@ -68,40 +111,56 @@ public class CategoryForm extends javax.swing.JFrame {
         tbCategory.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(tbCategory);
 
-        txtSeach.setText("ENTER CATEGORY ID");
-        txtSeach.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        txtSearch.setText("ENTER CATEGORY ID");
+        txtSearch.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search.png"))); // NOI18N
         btnSearch.setText("SEARCH");
         btnSearch.setBorderColor(new java.awt.Color(0, 95, 115));
         btnSearch.setColor(new java.awt.Color(0, 95, 115));
         btnSearch.setColorClick(new java.awt.Color(0, 95, 115));
         btnSearch.setColorOver(new java.awt.Color(10, 147, 150));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSearchMouseClicked(evt);
+            }
+        });
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/plus.png"))); // NOI18N
         btnAdd.setText("ADD");
         btnAdd.setBorderColor(new java.awt.Color(43, 147, 72));
         btnAdd.setColor(new java.awt.Color(43, 147, 72));
         btnAdd.setColorClick(new java.awt.Color(43, 147, 72));
         btnAdd.setColorOver(new java.awt.Color(128, 185, 24));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/edit.png"))); // NOI18N
         btnEdit.setText("EDIT");
         btnEdit.setBorderColor(new java.awt.Color(42, 111, 151));
         btnEdit.setColor(new java.awt.Color(42, 111, 151));
         btnEdit.setColorClick(new java.awt.Color(42, 111, 151));
         btnEdit.setColorOver(new java.awt.Color(97, 165, 194));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditMouseClicked(evt);
+            }
+        });
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/delete.png"))); // NOI18N
         btnDelete.setText("DELETE");
         btnDelete.setBorderColor(new java.awt.Color(208, 0, 0));
         btnDelete.setColor(new java.awt.Color(208, 0, 0));
         btnDelete.setColorClick(new java.awt.Color(208, 0, 0));
         btnDelete.setColorOver(new java.awt.Color(249, 65, 68));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -127,7 +186,7 @@ public class CategoryForm extends javax.swing.JFrame {
                                 .addComponent(jLabel1))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(286, 286, 286)
-                                .addComponent(txtSeach, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -147,14 +206,15 @@ public class CategoryForm extends javax.swing.JFrame {
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSeach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
 
@@ -171,6 +231,81 @@ public class CategoryForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+        CategoryAddForm add = new CategoryAddForm();
+        add.setVisible(true);
+    }//GEN-LAST:event_btnAddMouseClicked
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        try {
+            int row = tbCategory.getSelectedRow();
+            TableModel model = tbCategory.getModel();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "WARNING!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                int cateID = Integer.parseInt(model.getValueAt(row, 0).toString());
+
+                int input = JOptionPane.showConfirmDialog(null,
+                        "Do you want to delete this Category?", "MESSAGE!", JOptionPane.YES_NO_OPTION);
+                if (input == JOptionPane.YES_OPTION) {
+                    if (cateBLL.deleteCategory(cateID) > 0) {
+                        JOptionPane.showMessageDialog(this, "You have completed to delete teacher successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                        List list = cateBLL.loadCategory();
+                        model = convertCategory(list);
+                        tbCategory.setModel(model);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error because the information is binding!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    return;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
+        try {
+            int row = tbCategory.getSelectedRow();
+            TableModel model = tbCategory.getModel();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "WARNING!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                int CateforyID = Integer.parseInt(model.getValueAt(row, 0).toString());
+                CategoryEditForm editform = new CategoryEditForm(CateforyID, this, rootPaneCheckingEnabled);
+                editform.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnEditMouseClicked
+
+    private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
+        //reload before search 
+        try {
+           listCategory();
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            String inputSearch = txtSearch.getText();
+            //int ID = Integer.parseInt(inputSearch);
+            if (inputSearch.isBlank() == false) {
+                List list = cateBLL.searchCategoryName(inputSearch);
+                DefaultTableModel model = convertCategory(list);
+                tbCategory.setModel(model);
+            } else {
+                List list = cateBLL.loadCategory();
+                DefaultTableModel model = convertCategory(list);
+                tbCategory.setModel(model);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchMouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,6 +352,6 @@ public class CategoryForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private UI.UI_Item.button.Panel panel1;
     private UI.UI_Item.table.TableDark tbCategory;
-    private UI.UI_Item.textfield.SearchField txtSeach;
+    private UI.UI_Item.textfield.SearchField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,14 @@
  */
 package UI.Category;
 
+import BLL.CategoryBLL;
+import hibernateMarket.DAL.Category;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 84378
@@ -13,8 +21,24 @@ public class CategoryEditForm extends javax.swing.JFrame {
     /**
      * Creates new form CategoryEditForm
      */
+    private CategoryBLL cateBLL = new CategoryBLL();
+    private CategoryForm home = new CategoryForm();
+    private  Category cate = new Category();
     public CategoryEditForm() {
+        this.setTitle("Edit Category");
         initComponents();
+    }
+    public CategoryEditForm(int categoryID, CategoryForm parent, boolean modal) throws SQLException {
+        this.setTitle("Edit Category");
+        initComponents();
+        this.setLocationRelativeTo(null);
+        cate = cateBLL.getCategory(categoryID);
+        home = parent;
+        getInfor();
+    }
+    public void getInfor() {
+        txtName.setText(cate.getName());
+        txtDescription.setText(cate.getDescription());
     }
 
     /**
@@ -62,8 +86,12 @@ public class CategoryEditForm extends javax.swing.JFrame {
         btnUpdate.setColorClick(new java.awt.Color(43, 147, 72));
         btnUpdate.setColorOver(new java.awt.Color(128, 185, 24));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseClicked(evt);
+            }
+        });
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
@@ -128,6 +156,27 @@ public class CategoryEditForm extends javax.swing.JFrame {
     private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescriptionActionPerformed
+
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+       
+        cate.setName(txtName.getText());
+        cate.setDescription(txtDescription.getText());
+        
+        try {
+            int choice = JOptionPane.showConfirmDialog(null, "Do you want to update this Category?", "Warning!", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.NO_OPTION) {
+                return;
+            } else {
+                if (cateBLL.updateCategory(cate) > 0) {
+                    JOptionPane.showMessageDialog(this, "You have completed to update Category successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                    home.initTable();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryEditForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnUpdateMouseClicked
 
     /**
      * @param args the command line arguments

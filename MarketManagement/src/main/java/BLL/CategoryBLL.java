@@ -22,6 +22,20 @@ public class CategoryBLL {
         
         return list;
     }
+    public List searchCategoryID (int cateID) throws SQLException 
+    {
+        List list;
+        list = cateDAL.searchCategoryID(cateID);
+        
+        return list;
+    }
+    public List searchCategoryName (String cateName) throws SQLException 
+    {
+        List list;
+        list = cateDAL.searchCategoryName(cateName);
+        
+        return list;
+    }
     public Category[] convertList1 (List<Category> list)
     {
         int rows = list.size();
@@ -50,6 +64,11 @@ public class CategoryBLL {
     public int newCategory(Category c) throws SQLException
     {
        int result = cateDAL.addCategory(c);
+       return result;
+    }
+    public int updateCategory(Category c) throws SQLException
+    {
+       int result = cateDAL.updateCategory(c);
        return result;
     }
     public int deleteCategory(int cateID) throws SQLException{
