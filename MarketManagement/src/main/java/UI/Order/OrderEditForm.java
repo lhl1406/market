@@ -2,43 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI.Category;
-
-import BLL.CategoryBLL;
-import hibernateMarket.DAL.Category;
-import java.awt.Color;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+package UI.Order;
 
 /**
  *
  * @author 84378
  */
-public class CategoryEditForm extends javax.swing.JFrame {
+public class OrderEditForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form CategoryEditForm
+     * Creates new form OrderEditForm
      */
-    private CategoryBLL cateBLL = new CategoryBLL();
-    private CategoryForm home = new CategoryForm();
-    private  Category cate = new Category();
-    public CategoryEditForm() {
-        this.setTitle("Edit Category");
+    public OrderEditForm() {
         initComponents();
-    }
-    public CategoryEditForm(int categoryID, CategoryForm parent, boolean modal) throws SQLException {
-        this.setTitle("Edit Category");
-        initComponents();
-        this.setLocationRelativeTo(null);
-        cate = cateBLL.getCategory(categoryID);
-        home = parent;
-        getInfor();
-    }
-    public void getInfor() {
-        txtName.setText(cate.getName());
-        txtDescription.setText(cate.getDescription());
     }
 
     /**
@@ -52,8 +28,10 @@ public class CategoryEditForm extends javax.swing.JFrame {
 
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
-        txtName = new UI.UI_Item.textfield.TextField();
-        txtDescription = new UI.UI_Item.textfield.TextField();
+        txtCustomerID = new UI.UI_Item.textfield.TextField();
+        txtDate = new UI.UI_Item.textfield.TextField();
+        txtTotal = new UI.UI_Item.textfield.TextField();
+        txtNote = new UI.UI_Item.textfield.TextField();
         btnUpdate = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
 
@@ -63,19 +41,28 @@ public class CategoryEditForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
-        jLabel1.setText("EDIT CATEGORY");
+        jLabel1.setText("EDIT ORDER");
 
-        txtName.setText("Name ...");
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        txtCustomerID.setText("Customer ID ...");
+
+        txtDate.setText("Date ...");
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                txtDateActionPerformed(evt);
             }
         });
 
-        txtDescription.setText("Description ...");
-        txtDescription.addActionListener(new java.awt.event.ActionListener() {
+        txtTotal.setText("Total ...");
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescriptionActionPerformed(evt);
+                txtTotalActionPerformed(evt);
+            }
+        });
+
+        txtNote.setText("Note ...");
+        txtNote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNoteActionPerformed(evt);
             }
         });
 
@@ -86,12 +73,8 @@ public class CategoryEditForm extends javax.swing.JFrame {
         btnUpdate.setColorClick(new java.awt.Color(43, 147, 72));
         btnUpdate.setColorOver(new java.awt.Color(128, 185, 24));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUpdateMouseClicked(evt);
-            }
-        });
 
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
@@ -107,23 +90,23 @@ public class CategoryEditForm extends javax.swing.JFrame {
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panel1Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel1))
+                        .addComponent(txtCustomerID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panel1Layout.createSequentialGroup()
+                            .addGap(1, 1, 1)
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panel1Layout.createSequentialGroup()
                             .addGap(232, 232, 232)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,12 +115,16 @@ public class CategoryEditForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,40 +141,21 @@ public class CategoryEditForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
+    }//GEN-LAST:event_txtDateActionPerformed
 
-    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescriptionActionPerformed
+    }//GEN-LAST:event_txtTotalActionPerformed
 
-<<<<<<< HEAD
-    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-       
-        cate.setName(txtName.getText());
-        cate.setDescription(txtDescription.getText());
-        
-        try {
-            int choice = JOptionPane.showConfirmDialog(null, "Do you want to update this Category?", "Warning!", JOptionPane.YES_NO_OPTION);
-            if (choice == JOptionPane.NO_OPTION) {
-                return;
-            } else {
-                if (cateBLL.updateCategory(cate) > 0) {
-                    JOptionPane.showMessageDialog(this, "You have completed to update Category successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
-                    home.initTable();
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CategoryEditForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_btnUpdateMouseClicked
-=======
+    private void txtNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoteActionPerformed
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
->>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
 
     /**
      * @param args the command line arguments
@@ -206,20 +174,20 @@ public class CategoryEditForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CategoryEditForm().setVisible(true);
+                new OrderEditForm().setVisible(true);
             }
         });
     }
@@ -229,7 +197,9 @@ public class CategoryEditForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
-    private UI.UI_Item.textfield.TextField txtDescription;
-    private UI.UI_Item.textfield.TextField txtName;
+    private UI.UI_Item.textfield.TextField txtCustomerID;
+    private UI.UI_Item.textfield.TextField txtDate;
+    private UI.UI_Item.textfield.TextField txtNote;
+    private UI.UI_Item.textfield.TextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

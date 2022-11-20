@@ -2,20 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI.Vegetable;
-
-import UI.Category.CategoryAddForm;
+package UI.Customer;
 
 /**
  *
  * @author 84378
  */
-public class VegetableForm extends javax.swing.JFrame {
+public class CustomerForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form VegetableForm
+     * Creates new form CustomerForm
      */
-    public VegetableForm() {
+    public CustomerForm() {
         initComponents();
     }
 
@@ -32,7 +30,7 @@ public class VegetableForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new UI.UI_Item.button.MyButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbVegetable = new UI.UI_Item.table.TableDark();
+        tbCustomer = new UI.UI_Item.table.TableDark();
         txtSeach = new UI.UI_Item.textfield.SearchField();
         btnSearch = new UI.UI_Item.button.MyButton();
         btnAdd = new UI.UI_Item.button.MyButton();
@@ -45,7 +43,7 @@ public class VegetableForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
-        jLabel1.setText("VEGETABLE");
+        jLabel1.setText("CUSTOMER");
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
@@ -57,30 +55,25 @@ public class VegetableForm extends javax.swing.JFrame {
                 btnBackMouseClicked(evt);
             }
         });
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
-        tbVegetable.setModel(new javax.swing.table.DefaultTableModel(
+        tbCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "1", "Lemon", "kg", "10", "", "75000"},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {"1", "pass123", "Thinh", "district 5", "HCM"},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Vegetable ID", "Category ID", "Vegetable Name", "Unit", "Amount", "Image", "Price"
+                "Customer ID", "Password", "Full Name", "Address", "City"
             }
         ));
-        tbVegetable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jScrollPane2.setViewportView(tbVegetable);
+        tbCustomer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jScrollPane2.setViewportView(tbCustomer);
 
-        txtSeach.setText("ENTER VEGETABLE ID");
+        txtSeach.setText("ENTER ORDER ID");
         txtSeach.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search.png"))); // NOI18N
@@ -196,22 +189,18 @@ public class VegetableForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        this.setVisible(false);
+         this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        VegetableAddForm vetAdd = new VegetableAddForm();
-        vetAdd.setVisible(true);
+        CustomerAddForm cusAdd = new CustomerAddForm();
+        cusAdd.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        VegetableEditForm vetEdit = new VegetableEditForm();
-        vetEdit.setVisible(true);
+        CustomerEditForm cusEdit = new CustomerEditForm();
+        cusEdit.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,20 +219,20 @@ public class VegetableForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VegetableForm().setVisible(true);
+                new CustomerForm().setVisible(true);
             }
         });
     }
@@ -257,7 +246,7 @@ public class VegetableForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private UI.UI_Item.button.Panel panel1;
-    private UI.UI_Item.table.TableDark tbVegetable;
+    private UI.UI_Item.table.TableDark tbCustomer;
     private UI.UI_Item.textfield.SearchField txtSeach;
     // End of variables declaration//GEN-END:variables
 }

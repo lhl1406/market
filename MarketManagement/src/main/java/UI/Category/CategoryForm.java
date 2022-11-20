@@ -93,6 +93,11 @@ public final class CategoryForm extends javax.swing.JFrame {
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
         btnBack.setColorOver(new java.awt.Color(210, 224, 191));
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
 
         tbCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,9 +137,15 @@ public final class CategoryForm extends javax.swing.JFrame {
         btnAdd.setColorClick(new java.awt.Color(43, 147, 72));
         btnAdd.setColorOver(new java.awt.Color(128, 185, 24));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+<<<<<<< HEAD
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
+=======
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+>>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
             }
         });
 
@@ -144,9 +155,15 @@ public final class CategoryForm extends javax.swing.JFrame {
         btnEdit.setColorClick(new java.awt.Color(42, 111, 151));
         btnEdit.setColorOver(new java.awt.Color(97, 165, 194));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+<<<<<<< HEAD
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditMouseClicked(evt);
+=======
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+>>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
             }
         });
 
@@ -232,6 +249,7 @@ public final class CategoryForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         CategoryAddForm add = new CategoryAddForm();
         add.setVisible(true);
@@ -306,6 +324,21 @@ public final class CategoryForm extends javax.swing.JFrame {
             Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSearchMouseClicked
+=======
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        CategoryAddForm cateAdd = new CategoryAddForm();
+        cateAdd.setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        CategoryEditForm cateEdit = new CategoryEditForm();
+        cateEdit.setVisible(true);
+    }//GEN-LAST:event_btnEditActionPerformed
+>>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
 
     /**
      * @param args the command line arguments

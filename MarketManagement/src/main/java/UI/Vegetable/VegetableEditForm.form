@@ -173,6 +173,9 @@
               <Color blue="bf" green="e0" red="d2" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtUnit">
           <Properties>

@@ -2,43 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI.Category;
-
-import BLL.CategoryBLL;
-import hibernateMarket.DAL.Category;
-import java.awt.Color;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+package UI.Customer;
 
 /**
  *
  * @author 84378
  */
-public class CategoryEditForm extends javax.swing.JFrame {
+public class CustomerAddForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form CategoryEditForm
+     * Creates new form CustomerAddForm
      */
-    private CategoryBLL cateBLL = new CategoryBLL();
-    private CategoryForm home = new CategoryForm();
-    private  Category cate = new Category();
-    public CategoryEditForm() {
-        this.setTitle("Edit Category");
+    public CustomerAddForm() {
         initComponents();
-    }
-    public CategoryEditForm(int categoryID, CategoryForm parent, boolean modal) throws SQLException {
-        this.setTitle("Edit Category");
-        initComponents();
-        this.setLocationRelativeTo(null);
-        cate = cateBLL.getCategory(categoryID);
-        home = parent;
-        getInfor();
-    }
-    public void getInfor() {
-        txtName.setText(cate.getName());
-        txtDescription.setText(cate.getDescription());
     }
 
     /**
@@ -52,9 +28,11 @@ public class CategoryEditForm extends javax.swing.JFrame {
 
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
-        txtName = new UI.UI_Item.textfield.TextField();
-        txtDescription = new UI.UI_Item.textfield.TextField();
-        btnUpdate = new UI.UI_Item.button.MyButton();
+        txtCustomerID = new UI.UI_Item.textfield.TextField();
+        txtVegetable = new UI.UI_Item.textfield.TextField();
+        txtQuantity = new UI.UI_Item.textfield.TextField();
+        txtPrice = new UI.UI_Item.textfield.TextField();
+        btnSave = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,35 +41,40 @@ public class CategoryEditForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
-        jLabel1.setText("EDIT CATEGORY");
+        jLabel1.setText("ADD CUSTOMER");
 
-        txtName.setText("Name ...");
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        txtCustomerID.setText("Customer ID ...");
+
+        txtVegetable.setText("Vegetable ...");
+        txtVegetable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                txtVegetableActionPerformed(evt);
             }
         });
 
-        txtDescription.setText("Description ...");
-        txtDescription.addActionListener(new java.awt.event.ActionListener() {
+        txtQuantity.setText("Quantity ...");
+        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescriptionActionPerformed(evt);
+                txtQuantityActionPerformed(evt);
             }
         });
 
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette (1).png"))); // NOI18N
-        btnUpdate.setText("UPDATE");
-        btnUpdate.setBorderColor(new java.awt.Color(43, 147, 72));
-        btnUpdate.setColor(new java.awt.Color(43, 147, 72));
-        btnUpdate.setColorClick(new java.awt.Color(43, 147, 72));
-        btnUpdate.setColorOver(new java.awt.Color(128, 185, 24));
-        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUpdateMouseClicked(evt);
+        txtPrice.setText("Price ...");
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
             }
         });
 
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette (1).png"))); // NOI18N
+        btnSave.setText("SAVE");
+        btnSave.setBorderColor(new java.awt.Color(43, 147, 72));
+        btnSave.setColor(new java.awt.Color(43, 147, 72));
+        btnSave.setColorClick(new java.awt.Color(43, 147, 72));
+        btnSave.setColorOver(new java.awt.Color(128, 185, 24));
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
         btnBack.setColor(new java.awt.Color(210, 224, 191));
         btnBack.setColorClick(new java.awt.Color(210, 224, 191));
@@ -117,12 +100,14 @@ public class CategoryEditForm extends javax.swing.JFrame {
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panel1Layout.createSequentialGroup()
                             .addGap(232, 232, 232)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                             .addGap(1, 1, 1)
                             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtVegetable, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -132,12 +117,16 @@ public class CategoryEditForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(txtVegetable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,40 +143,21 @@ public class CategoryEditForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void txtVegetableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVegetableActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
+    }//GEN-LAST:event_txtVegetableActionPerformed
 
-    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
+    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescriptionActionPerformed
+    }//GEN-LAST:event_txtQuantityActionPerformed
 
-<<<<<<< HEAD
-    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-       
-        cate.setName(txtName.getText());
-        cate.setDescription(txtDescription.getText());
-        
-        try {
-            int choice = JOptionPane.showConfirmDialog(null, "Do you want to update this Category?", "Warning!", JOptionPane.YES_NO_OPTION);
-            if (choice == JOptionPane.NO_OPTION) {
-                return;
-            } else {
-                if (cateBLL.updateCategory(cate) > 0) {
-                    JOptionPane.showMessageDialog(this, "You have completed to update Category successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
-                    home.initTable();
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CategoryEditForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_btnUpdateMouseClicked
-=======
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
->>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
 
     /**
      * @param args the command line arguments
@@ -206,30 +176,32 @@ public class CategoryEditForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CategoryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CategoryEditForm().setVisible(true);
+                new CustomerAddForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private UI.UI_Item.button.MyButton btnBack;
-    private UI.UI_Item.button.MyButton btnUpdate;
+    private UI.UI_Item.button.MyButton btnSave;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
-    private UI.UI_Item.textfield.TextField txtDescription;
-    private UI.UI_Item.textfield.TextField txtName;
+    private UI.UI_Item.textfield.TextField txtCustomerID;
+    private UI.UI_Item.textfield.TextField txtPrice;
+    private UI.UI_Item.textfield.TextField txtQuantity;
+    private UI.UI_Item.textfield.TextField txtVegetable;
     // End of variables declaration//GEN-END:variables
 }

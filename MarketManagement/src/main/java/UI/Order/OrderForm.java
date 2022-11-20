@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI.Vegetable;
+package UI.Order;
 
-import UI.Category.CategoryAddForm;
+import UI.OrderDetail.OrderDetailForm;
 
 /**
  *
  * @author 84378
  */
-public class VegetableForm extends javax.swing.JFrame {
+public class OrderForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form VegetableForm
+     * Creates new form OrderEditForm
      */
-    public VegetableForm() {
+    public OrderForm() {
         initComponents();
     }
 
@@ -32,12 +32,14 @@ public class VegetableForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new UI.UI_Item.button.MyButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbVegetable = new UI.UI_Item.table.TableDark();
-        txtSeach = new UI.UI_Item.textfield.SearchField();
+        tbOrder = new UI.UI_Item.table.TableDark();
+        cbOrderID = new UI.UI_Item.combobox.ComboBoxSuggestion();
+        txtSearch = new UI.UI_Item.textfield.SearchField();
         btnSearch = new UI.UI_Item.button.MyButton();
         btnAdd = new UI.UI_Item.button.MyButton();
         btnEdit = new UI.UI_Item.button.MyButton();
         btnDelete = new UI.UI_Item.button.MyButton();
+        btnView = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,7 +47,7 @@ public class VegetableForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
-        jLabel1.setText("VEGETABLE");
+        jLabel1.setText("ORDER");
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
@@ -63,25 +65,27 @@ public class VegetableForm extends javax.swing.JFrame {
             }
         });
 
-        tbVegetable.setModel(new javax.swing.table.DefaultTableModel(
+        tbOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "1", "Lemon", "kg", "10", "", "75000"},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {"1", "1", "11/14/2022", "70000", "Thinh"},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Vegetable ID", "Category ID", "Vegetable Name", "Unit", "Amount", "Image", "Price"
+                "Order ID", "Customer ID", "Date", "Total", "Note"
             }
         ));
-        tbVegetable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jScrollPane2.setViewportView(tbVegetable);
+        tbOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jScrollPane2.setViewportView(tbOrder);
 
-        txtSeach.setText("ENTER VEGETABLE ID");
-        txtSeach.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        cbOrderID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        txtSearch.setText("ENTER ORDER ID");
+        txtSearch.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search.png"))); // NOI18N
         btnSearch.setText("SEARCH");
@@ -125,6 +129,19 @@ public class VegetableForm extends javax.swing.JFrame {
         btnDelete.setColorOver(new java.awt.Color(249, 65, 68));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        btnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/file.png"))); // NOI18N
+        btnView.setText("VIEW");
+        btnView.setBorderColor(new java.awt.Color(137, 194, 217));
+        btnView.setColor(new java.awt.Color(137, 194, 217));
+        btnView.setColorClick(new java.awt.Color(137, 194, 217));
+        btnView.setColorOver(new java.awt.Color(169, 214, 229));
+        btnView.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -139,20 +156,24 @@ public class VegetableForm extends javax.swing.JFrame {
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(165, 165, 165)
+                                .addGap(221, 221, 221)
                                 .addComponent(jLabel1))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(286, 286, 286)
-                                .addComponent(txtSeach, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()
+                                .addComponent(cbOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
@@ -169,15 +190,17 @@ public class VegetableForm extends javax.swing.JFrame {
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSeach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbOrderID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
@@ -196,18 +219,23 @@ public class VegetableForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        this.setVisible(false);
+         this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        VegetableAddForm vetAdd = new VegetableAddForm();
-        vetAdd.setVisible(true);
+        OrderAddForm ordAdd = new OrderAddForm();
+        ordAdd.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        VegetableEditForm vetEdit = new VegetableEditForm();
-        vetEdit.setVisible(true);
+        OrderEditForm ordEdit = new OrderEditForm();
+        ordEdit.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        OrderDetailForm ordDetail = new OrderDetailForm();
+        ordDetail.setVisible(true);
+    }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
@@ -230,20 +258,21 @@ public class VegetableForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VegetableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VegetableForm().setVisible(true);
+                new OrderForm().setVisible(true);
             }
         });
     }
@@ -254,10 +283,12 @@ public class VegetableForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnDelete;
     private UI.UI_Item.button.MyButton btnEdit;
     private UI.UI_Item.button.MyButton btnSearch;
+    private UI.UI_Item.button.MyButton btnView;
+    private UI.UI_Item.combobox.ComboBoxSuggestion cbOrderID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private UI.UI_Item.button.Panel panel1;
-    private UI.UI_Item.table.TableDark tbVegetable;
-    private UI.UI_Item.textfield.SearchField txtSeach;
+    private UI.UI_Item.table.TableDark tbOrder;
+    private UI.UI_Item.textfield.SearchField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
