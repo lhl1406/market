@@ -4,6 +4,8 @@
  */
 package UI.Vegetable;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 84378
@@ -28,8 +30,6 @@ public class VegetableAddForm extends javax.swing.JFrame {
 
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
-        txtVegetableID = new UI.UI_Item.textfield.TextField();
-        txtCategoryID = new UI.UI_Item.textfield.TextField();
         txtVegetableName = new UI.UI_Item.textfield.TextField();
         btnSave = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
@@ -38,6 +38,8 @@ public class VegetableAddForm extends javax.swing.JFrame {
         txtPrice = new UI.UI_Item.textfield.TextField();
         btnFile = new UI.UI_Item.button.MyButton();
         txtLinkImage = new UI.UI_Item.textfield.TextField();
+        cbVegetableID = new UI.UI_Item.combobox.ComboBoxSuggestion();
+        cbCateID = new UI.UI_Item.combobox.ComboBoxSuggestion();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,20 +48,6 @@ public class VegetableAddForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
         jLabel1.setText("ADD VEGETABLE");
-
-        txtVegetableID.setText("Vegetable ID ...");
-        txtVegetableID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVegetableIDActionPerformed(evt);
-            }
-        });
-
-        txtCategoryID.setText("Category ID ...");
-        txtCategoryID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCategoryIDActionPerformed(evt);
-            }
-        });
 
         txtVegetableName.setText("Vegetable Name ...");
         txtVegetableName.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +63,11 @@ public class VegetableAddForm extends javax.swing.JFrame {
         btnSave.setColorClick(new java.awt.Color(43, 147, 72));
         btnSave.setColorOver(new java.awt.Color(128, 185, 24));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
@@ -94,7 +87,8 @@ public class VegetableAddForm extends javax.swing.JFrame {
             }
         });
 
-        txtAmount.setText("Amount ...");
+        txtAmount.setText("0");
+        txtAmount.setEnabled(false);
         txtAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAmountActionPerformed(evt);
@@ -123,6 +117,10 @@ public class VegetableAddForm extends javax.swing.JFrame {
             }
         });
 
+        cbVegetableID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VegetableID", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" }));
+
+        cbCateID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CateID", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" }));
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -142,16 +140,16 @@ public class VegetableAddForm extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                             .addGap(1, 1, 1)
                             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtVegetableID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtCategoryID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtVegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtVegetableName, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                .addComponent(txtUnit, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                .addComponent(txtAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createSequentialGroup()
                                     .addComponent(btnFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtLinkImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(txtLinkImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbVegetableID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbCateID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -160,11 +158,11 @@ public class VegetableAddForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(txtVegetableID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtCategoryID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
+                .addComponent(cbVegetableID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(cbCateID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtVegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +176,7 @@ public class VegetableAddForm extends javax.swing.JFrame {
                     .addComponent(txtLinkImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,17 +193,9 @@ public class VegetableAddForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCategoryIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCategoryIDActionPerformed
-
     private void txtVegetableNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVegetableNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVegetableNameActionPerformed
-
-    private void txtVegetableIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVegetableIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVegetableIDActionPerformed
 
     private void txtUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnitActionPerformed
         // TODO add your handling code here:
@@ -226,6 +216,17 @@ public class VegetableAddForm extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        if(txtAmount.getText().equals("") 
+                || txtLinkImage.getText().equals("") 
+                || txtPrice.getText().equals("") 
+                || txtUnit.getText().equals("") 
+                || txtVegetableName.getText().equals("")){
+                    JOptionPane.showMessageDialog(this, "Fields must not empty",
+                       "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,14 +267,14 @@ public class VegetableAddForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnFile;
     private UI.UI_Item.button.MyButton btnSave;
+    private UI.UI_Item.combobox.ComboBoxSuggestion cbCateID;
+    private UI.UI_Item.combobox.ComboBoxSuggestion cbVegetableID;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
     private UI.UI_Item.textfield.TextField txtAmount;
-    private UI.UI_Item.textfield.TextField txtCategoryID;
     private UI.UI_Item.textfield.TextField txtLinkImage;
     private UI.UI_Item.textfield.TextField txtPrice;
     private UI.UI_Item.textfield.TextField txtUnit;
-    private UI.UI_Item.textfield.TextField txtVegetableID;
     private UI.UI_Item.textfield.TextField txtVegetableName;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,8 @@
  */
 package UI.Category;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 84378
@@ -62,6 +64,11 @@ public class CategoryAddForm extends javax.swing.JFrame {
         btnSave.setColorClick(new java.awt.Color(43, 147, 72));
         btnSave.setColorOver(new java.awt.Color(128, 185, 24));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
@@ -137,6 +144,13 @@ public class CategoryAddForm extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        if(txtDescription.getText().equals("") || txtName.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Fields must not empty",
+               "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
