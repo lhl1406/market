@@ -58,16 +58,16 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtCategoryID" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtVegetableName" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtUnit" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtAmount" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtPrice" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                                  <Component id="txtVegetableName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUnit" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtAmount" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtPrice" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnFile" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtLinkImage" min="-2" pref="152" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="cbCateID" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -83,8 +83,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtCategoryID" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="cbCateID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="txtVegetableName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtUnit" min="-2" max="-2" attributes="0"/>
@@ -99,7 +99,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -115,14 +115,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="EDIT VEGETABLE"/>
           </Properties>
-        </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtCategoryID">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Category ID ..."/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCategoryIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtVegetableName">
           <Properties>
@@ -154,6 +146,9 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.button.MyButton" name="btnBack">
           <Properties>
@@ -187,7 +182,8 @@
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtAmount">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Amount ..."/>
+            <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAmountActionPerformed"/>
@@ -231,6 +227,21 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLinkImageActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbCateID">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="7">
+                <StringItem index="0" value="CateID"/>
+                <StringItem index="1" value="1"/>
+                <StringItem index="2" value="1"/>
+                <StringItem index="3" value="1"/>
+                <StringItem index="4" value="1"/>
+                <StringItem index="5" value="1"/>
+                <StringItem index="6" value="1"/>
+              </StringArray>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
