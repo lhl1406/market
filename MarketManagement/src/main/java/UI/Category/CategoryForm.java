@@ -10,16 +10,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public final class CategoryForm extends javax.swing.JFrame {
 
     private CategoryBLL cateBLL;
     public CategoryForm() {
         this.setTitle("Category");
+
         initComponents();
         cateBLL = new CategoryBLL();
-        
         try {
             listCategory();
         } catch (SQLException ex) {

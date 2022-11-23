@@ -4,7 +4,7 @@
  */
 package UI;
 
-import UI.Category.CategoryForm;
+//import UI.Category.CategoryForm;
 import UI.Customer.CustomerForm;
 import UI.Import.ImportForm;
 import UI.Order.OrderForm;
@@ -236,7 +236,7 @@ public class MenuForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVegetableMouseClicked
 
     private void btnCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoryMouseClicked
-        CategoryForm categ = new CategoryForm();
+        CategoryForm1 categ = new CategoryForm1();
         categ.setVisible(true);
     }//GEN-LAST:event_btnCategoryMouseClicked
 
