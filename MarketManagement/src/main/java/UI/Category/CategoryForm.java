@@ -249,7 +249,6 @@ public final class CategoryForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         CategoryAddForm add = new CategoryAddForm();
         add.setVisible(true);
@@ -324,7 +323,7 @@ public final class CategoryForm extends javax.swing.JFrame {
             Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSearchMouseClicked
-=======
+
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
@@ -338,7 +337,7 @@ public final class CategoryForm extends javax.swing.JFrame {
         CategoryEditForm cateEdit = new CategoryEditForm();
         cateEdit.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
->>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
+
 
     /**
      * @param args the command line arguments
