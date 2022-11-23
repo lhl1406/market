@@ -162,7 +162,6 @@ public class CategoryEditForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescriptionActionPerformed
 
-<<<<<<< HEAD
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
        
         cate.setName(txtName.getText());
@@ -183,11 +182,11 @@ public class CategoryEditForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnUpdateMouseClicked
-=======
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
->>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
+
 
     /**
      * @param args the command line arguments

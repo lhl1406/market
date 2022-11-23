@@ -181,7 +181,7 @@ public class CategoryAddForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescriptionActionPerformed
 
-<<<<<<< HEAD
+
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
         Category cate = new Category();
         int id = Integer.parseInt(txtCategoryID.getText());
@@ -199,11 +199,11 @@ public class CategoryAddForm extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSaveMouseClicked
-=======
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
->>>>>>> f5a0a87839135bfdd71196178f9753f3d6e943e2
+
 
     /**
      * @param args the command line arguments

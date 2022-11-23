@@ -323,7 +323,6 @@ public final class CategoryForm extends javax.swing.JFrame {
             Logger.getLogger(CategoryForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSearchMouseClicked
-
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
