@@ -174,6 +174,9 @@
               <Image iconType="3" name="/UI/icon/import2.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="thinh cute"/>
+            <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6a" green="c4" red="e9" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnImportMouseClicked"/>
@@ -188,6 +191,9 @@
               <Image iconType="3" name="/UI/icon/category.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="thinh cute"/>
+            <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="53" green="46" red="26" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCategoryMouseClicked"/>
@@ -224,6 +230,9 @@
               <Image iconType="3" name="/UI/icon/Statistcal.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="thinh cute"/>
+            <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="74" green="8c" red="ec" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnStatisticalMouseClicked"/>
@@ -263,6 +272,9 @@
               <Image iconType="3" name="/UI/icon/Order.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="thinh cute"/>
+            <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="51" green="6f" red="e7" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOrderMouseClicked"/>
@@ -280,6 +292,9 @@
               <Image iconType="3" name="/UI/icon/customer.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="thinh cute"/>
+            <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="61" green="a2" red="f4" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCustomerMouseClicked"/>

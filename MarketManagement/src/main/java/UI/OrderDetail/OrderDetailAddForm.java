@@ -30,12 +30,12 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
 
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
-        txtVegetable = new UI.UI_Item.textfield.TextField();
         txtQuantity = new UI.UI_Item.textfield.TextField();
         txtPrice = new UI.UI_Item.textfield.TextField();
         btnSave = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
         cbOrderID = new UI.UI_Item.combobox.ComboBoxSuggestion();
+        cbVegeID = new UI.UI_Item.combobox.ComboBoxSuggestion();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,8 +45,6 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
         jLabel1.setText("ADD ORDER DETAIL");
 
-        txtVegetable.setText("Vegetable ...");
-
         txtQuantity.setText("Quantity ...");
         txtQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,7 +52,7 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
             }
         });
 
-        txtPrice.setText("Price ...");
+        txtPrice.setEditable(false);
         txtPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPriceActionPerformed(evt);
@@ -87,6 +85,8 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
 
         cbOrderID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Order Id", "1", "2", "3", "4", "5", "6" }));
 
+        cbVegeID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VegetableID", "1", "1", "1", "1", "1", "1" }));
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -102,11 +102,12 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtVegetable, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                                .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                                .addComponent(cbOrderID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbVegeID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                    .addComponent(cbOrderID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -115,11 +116,11 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(cbOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtVegetable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(cbOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cbVegeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,7 +156,7 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if(txtPrice.getText().equals("") || txtQuantity.getText().equals("") || txtVegetable.getText().equals("")){
+        if(txtPrice.getText().equals("") || txtQuantity.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Fields must not empty",
                "WARNING", JOptionPane.WARNING_MESSAGE);
         }
@@ -200,10 +201,10 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnSave;
     private UI.UI_Item.combobox.ComboBoxSuggestion cbOrderID;
+    private UI.UI_Item.combobox.ComboBoxSuggestion cbVegeID;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
     private UI.UI_Item.textfield.TextField txtPrice;
     private UI.UI_Item.textfield.TextField txtQuantity;
-    private UI.UI_Item.textfield.TextField txtVegetable;
     // End of variables declaration//GEN-END:variables
 }
