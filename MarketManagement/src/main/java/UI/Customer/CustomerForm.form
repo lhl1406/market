@@ -247,7 +247,7 @@
         </Container>
         <Component class="UI.UI_Item.textfield.SearchField" name="txtSeach">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ENTER ORDER ID"/>
+            <Property name="text" type="java.lang.String" value="ENTER Full Name"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="2"/>
             </Property>
@@ -275,6 +275,9 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSearchMouseClicked"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.button.MyButton" name="btnAdd">
           <Properties>
@@ -325,6 +328,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEditMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditActionPerformed"/>
           </Events>
         </Component>
@@ -350,6 +354,9 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDeleteMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
