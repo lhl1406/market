@@ -4,6 +4,8 @@
  */
 package UI.Customer;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 84378
@@ -70,6 +72,11 @@ public class CustomerEditForm extends javax.swing.JFrame {
         btnUpdate.setColorClick(new java.awt.Color(43, 147, 72));
         btnUpdate.setColorOver(new java.awt.Color(128, 185, 24));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Backicon.png"))); // NOI18N
         btnBack.setBorderColor(new java.awt.Color(210, 224, 191));
@@ -149,6 +156,13 @@ public class CustomerEditForm extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        if(txtPrice.getText().equals("") || txtQuantity.getText().equals("") || txtVegetable.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Fields must not empty",
+               "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments

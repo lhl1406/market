@@ -60,11 +60,11 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCustomerID" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtVegetable" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtQuantity" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtPrice" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtVegetable" alignment="0" pref="259" max="32767" attributes="0"/>
+                                  <Component id="txtQuantity" alignment="0" pref="259" max="32767" attributes="0"/>
+                                  <Component id="txtPrice" alignment="0" pref="259" max="32767" attributes="0"/>
+                                  <Component id="cbCustomerID" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -79,9 +79,9 @@
                   <Component id="btnBack" min="-2" pref="44" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtCustomerID" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="cbCustomerID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtVegetable" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtQuantity" min="-2" max="-2" attributes="0"/>
@@ -89,7 +89,7 @@
                   <Component id="txtPrice" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -104,11 +104,6 @@
               <Color blue="42" green="36" red="14" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ADD CUSTOMER"/>
-          </Properties>
-        </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtCustomerID">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Customer ID ..."/>
           </Properties>
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtVegetable">
@@ -157,6 +152,9 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.button.MyButton" name="btnBack">
           <Properties>
@@ -179,6 +177,24 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbCustomerID">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="10">
+                <StringItem index="0" value="CustomerID"/>
+                <StringItem index="1" value="1"/>
+                <StringItem index="2" value="1"/>
+                <StringItem index="3" value="1"/>
+                <StringItem index="4" value="1"/>
+                <StringItem index="5" value="1"/>
+                <StringItem index="6" value="1"/>
+                <StringItem index="7" value="1"/>
+                <StringItem index="8" value="1"/>
+                <StringItem index="9" value="1"/>
+              </StringArray>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

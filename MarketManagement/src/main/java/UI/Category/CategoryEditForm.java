@@ -4,12 +4,14 @@
  */
 package UI.Category;
 
+
 import BLL.CategoryBLL;
 import hibernateMarket.DAL.Category;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -86,9 +88,15 @@ public class CategoryEditForm extends javax.swing.JFrame {
         btnUpdate.setColorClick(new java.awt.Color(43, 147, 72));
         btnUpdate.setColorOver(new java.awt.Color(128, 185, 24));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+<<<<<<< HEAD
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUpdateMouseClicked(evt);
+=======
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+>>>>>>> hibernate-f2
             }
         });
 
@@ -186,6 +194,13 @@ public class CategoryEditForm extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        if(txtDescription.getText().equals("") || txtName.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Fields must not empty",
+               "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     /**
