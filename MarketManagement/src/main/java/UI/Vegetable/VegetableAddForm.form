@@ -225,6 +225,9 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFileMouseClicked"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtLinkImage">
           <Events>

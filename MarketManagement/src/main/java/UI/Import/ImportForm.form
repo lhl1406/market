@@ -250,6 +250,9 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnImportMouseClicked"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbCategory">
         </Component>
