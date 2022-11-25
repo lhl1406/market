@@ -304,7 +304,7 @@ public class OrderForm extends javax.swing.JFrame {
                 String orderID = tblRow.get(0).toString();
                 int check = orderBLL.deleteOrderBLL(orderID);
                 if (check > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Hãy chọn Hàng muốn xóa ");
+                    JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn xóa ");
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Không thể xóa sản phẩm vì chi tiết sản phẩm ");
 

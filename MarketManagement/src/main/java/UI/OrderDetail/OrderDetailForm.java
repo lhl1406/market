@@ -4,6 +4,7 @@
  */
 package UI.OrderDetail;
 
+import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
 import UI.Order.OrderForm;
 import hibernateMarket.DAL.Orderdetail;
@@ -211,10 +212,9 @@ public class OrderDetailForm extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (tblRow != null) {
-            OrderDetailEditForm ordEdit = new OrderDetailEditForm(tblRow , indexRow);
+            OrderDetailEditForm ordEdit = new OrderDetailEditForm(tblRow, indexRow);
             ordEdit.setVisible(true);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn sửa ");
         }
     }//GEN-LAST:event_btnEditActionPerformed
@@ -222,18 +222,20 @@ public class OrderDetailForm extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (tblRow != null) {
             int input = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa ? ", "Xóa chi tiết đặt hàng", JOptionPane.YES_NO_OPTION);
-            if(input == 0){
+            if (input == 0) {
                 String orderID = tblRow.get(0).toString();
-                String Vegetable =tblRow.get(1).toString(); 
+                String Vegetable = tblRow.get(1).toString();
                 int check = ordBLL.deteleOrderdetailBLL(orderID, Vegetable);
-                if(check > 0){
+                if (check > 0) {
                     JOptionPane.showMessageDialog(rootPane, "Xóa thành công ");
+                    String totalOrder = ordBLL.getTotalOrder(this.OrderID);
+                    OrderBLL orderBLL = new OrderBLL();
+                    orderBLL.updateTotalBLL(totalOrder, this.OrderID);
                     btnDoc();
                 }
-                    
+
             }
-        }
-         else {
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn xóa ");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

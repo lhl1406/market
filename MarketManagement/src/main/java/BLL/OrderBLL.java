@@ -54,13 +54,15 @@ public class OrderBLL {
         return check;
     }
 
-    public int addOrderBLL( String CusID, String note) throws ParseException {
-
+    public List addOrderBLL( String CusID, String note) throws ParseException {       
+        List list = new ArrayList();
         int cusID = Integer.parseInt(CusID);
         Date d = new Date();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(d);
         int check = orderDAL.addOrder( cusID, date, note);
-        return check;
+        list.add(date);
+        list.add(check);
+        return list;
     }
 
     public List findOrderBLL(String orderID, String cusID) {
@@ -77,9 +79,15 @@ public class OrderBLL {
         return list;
     }
 
-    public void updateTotalBLL(String Total) {
+    public void updateTotalBLL(String Total , String OrderID) {
         float total = Float.parseFloat(Total);
-        orderDAL.updateTotal(total);
+        int ordID = Integer.parseInt(OrderID);
+
+        orderDAL.updateTotal(total,ordID);
+    }
+    
+    public int getLastIDBLL(){
+        return orderDAL.getOrderLastID();
     }
 
     public OrderBLL() {

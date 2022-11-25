@@ -39,7 +39,7 @@ public class OrderdetailDAL {
     public int addDetail(int OrderID, int VegId, int quantity, float price) {
         session.beginTransaction();
         String hql2 = "INSERT INTO Orderdetail (OrderID , VegetableID , Quantity , Price)"
-                + " VALUES ('" + OrderID + "','" + VegId + "','" + quantity + "', '" + 300000 + "' )";
+                + " VALUES ('" + OrderID + "','" + VegId + "','" + quantity + "', '" + price + "' )";
         Query query = session.createNativeQuery(hql2);
         query.executeUpdate();
         session.getTransaction().commit();
@@ -57,7 +57,7 @@ public class OrderdetailDAL {
         return 1;
     }
 
-    public int updateDetail(int OrderID, int VegId, int quantity, float price , int vegCur) {
+    public int updateDetail(int OrderID, int VegId, int quantity, float price, int vegCur) {
         session.beginTransaction();
         String hql = "UPDATE Orderdetail set VegetableID = :vegId ,Quantity= :quantity , Price= :price "
                 + "WHERE OrderID = :orderID and VegetableID = :vegIdCur";
@@ -73,8 +73,19 @@ public class OrderdetailDAL {
         return 1;
     }
 
+    public Double getTotalOrder(int OrderID) {
+        session.beginTransaction();
+        String hql = "Select SUM(Price) FROM orderdetail where OrderID = :id";
+        Query query = session.createNativeQuery(hql);
+        query.setParameter("id", OrderID);
+        Double result = (Double) query.uniqueResult();
+        session.getTransaction().commit();
+        return result;
+    }
+
     public static void main(String[] args) {
         OrderdetailDAL dal = new OrderdetailDAL();
+//        System.out.println(dal.getTotalOrder(1));
 //        System.out.println(dal.getDetail(0).get(0));
 //        List<Orderdetail> d = dal.getDetail(0);
 //        System.out.println(d.get(0));

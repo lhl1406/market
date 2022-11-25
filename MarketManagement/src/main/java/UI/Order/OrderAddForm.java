@@ -8,15 +8,18 @@ import BLL.CustomerBLL;
 import BLL.OrderBLL;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 84378
  */
 public class OrderAddForm extends javax.swing.JFrame {
+
     private Object[] CusIdList;
     private OrderBLL ordBll;
 
@@ -28,12 +31,13 @@ public class OrderAddForm extends javax.swing.JFrame {
         this.CusIdList = readCus();
         initComponents();
     }
-    
-     public Object[] readCus() {
+
+    public Object[] readCus() {
         CustomerBLL customerbll = new CustomerBLL();
         List list = customerbll.getListCusIDBLL();
         return list.toArray();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,7 +165,14 @@ public class OrderAddForm extends javax.swing.JFrame {
         String Cusid = cbCustomerID.getSelectedItem().toString();
         String note = txtNote.getText();
         try {
-            ordBll.addOrderBLL(Cusid, note);
+            List list = ordBll.addOrderBLL(Cusid, note);
+            int check = (int) list.get(1);
+            String date = (String) list.get(0);
+            if ( check > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Thêm thành công ");
+                int LastOrderID = ordBll.getLastIDBLL()+1;
+                addTbOrder(OrderForm.modelOrder, LastOrderID, Cusid, date, note);
+            }
         } catch (ParseException ex) {
             Logger.getLogger(OrderAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -171,7 +182,15 @@ public class OrderAddForm extends javax.swing.JFrame {
     private void cbCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCustomerIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCustomerIDActionPerformed
-
+    
+    public void addTbOrder(DefaultTableModel model, int LastID, String CusID, String date, String note){
+        Vector row=new Vector();  
+        row.add(LastID);
+        row.add(CusID);
+        row.add(date);
+        row.add(note);
+        model.addRow(row);
+    }
     /**
      * @param args the command line arguments
      */

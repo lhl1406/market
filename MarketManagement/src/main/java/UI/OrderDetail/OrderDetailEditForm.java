@@ -4,6 +4,7 @@
  */
 package UI.OrderDetail;
 
+import BLL.OrderBLL;
 import BLL.OrderDetailBLL;
 import BLL.VegetableBLL;
 import java.util.List;
@@ -181,6 +182,9 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
             int check = ordbll.updateOrderDetailBLL(this.OrderID, VegID, Quantity, Price , this.VegID);
             if (check > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Sửa thành công ");
+                String totalOrder = ordbll.getTotalOrder(this.OrderID);
+                OrderBLL orderBLL = new OrderBLL();
+                orderBLL.updateTotalBLL(totalOrder,this.OrderID);
                 updateTbDetail(OrderDetailForm.model , this.OrderID, VegID, Quantity, Price , indexRow);
             }
         }

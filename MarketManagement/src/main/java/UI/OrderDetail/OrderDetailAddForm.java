@@ -185,6 +185,9 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
             int check = ordbll.addOrderdetailBLL(this.OrderID, VegID, Quantity, Price);
             if(check > 0){
                 JOptionPane.showMessageDialog(rootPane, "Them thành công ");
+                String totalOrder = ordbll.getTotalOrder(this.OrderID);
+                OrderBLL orderBLL = new OrderBLL();
+                orderBLL.updateTotalBLL(totalOrder,this.OrderID);
                 addRowTbDetail(OrderDetailForm.model , this.OrderID, VegID, Quantity, Price);
             }
         }

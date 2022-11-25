@@ -54,14 +54,15 @@ public class OrderDAL {
     }
 
     public int addOrder(int cusID, String date, String note) {
+        System.out.println(date);
         session.beginTransaction();
 //        System.out.println(date);
 //        String hql = "insert into order1 (OrderID , CustomerID , Date , Total , Note)"
 //                + "values(' :orderID ', ':cusID' , ':date' , ':total' , ':note')";
 
         String hql2 = "INSERT INTO order1 ( CustomerID , Date , Total , Note)"
-                + " VALUES ('" + cusID + "','" + date + "', '" + 0 + "', '"+ note + "')";
-        Query query = session.createNativeQuery(hql2);           
+                + " VALUES ('" + cusID + "','" + date + "', '" + 0 + "', '" + note + "')";
+        Query query = session.createNativeQuery(hql2);
 //        
 ////        Query query = session.createNativeQuery(hql);
 //        query.setParameter("orderID", orderID);
@@ -73,7 +74,16 @@ public class OrderDAL {
         session.getTransaction().commit();
         return 1;
     }
-
+    
+    public int getOrderLastID(){
+        session.beginTransaction();
+        String hql = "Select Max(OrderID) FROM Order";
+        Query query = session.createQuery(hql);
+        int result = (int) query.uniqueResult();
+        session.getTransaction().commit();
+        return result;
+    }
+    
     public int deleteOrder(int orderID) {
         int result;
         try {
@@ -101,8 +111,8 @@ public class OrderDAL {
         session.getTransaction().commit();
         return list;
     }
-    
-      public List findOrder2(int orderID) {
+
+    public List findOrder2(int orderID) {
         session.beginTransaction();
         String hql = "FROM Order where OrderID = :orderID";
         Query query = session.createQuery(hql);
@@ -112,17 +122,19 @@ public class OrderDAL {
         return list;
     }
 
-    public void updateTotal(float total) {
+    public void updateTotal(float total, int OrderID) {
         session.beginTransaction();
         String hql = "UPDATE Order set Total = :total " + "WHERE OrderID = :Id";
         Query query = session.createQuery(hql);
         query.setParameter("total", total);
+        query.setParameter("Id", OrderID);
         query.executeUpdate();
         session.getTransaction().commit();
     }
 
     public static void main(String args[]) throws ParseException {
         OrderDAL dal = new OrderDAL();
+//        System.out.println(dal.getOrderLastID());
 
 //        dal.addDetail();
 //        List order = dal.getDetail();
@@ -130,11 +142,12 @@ public class OrderDAL {
 //        
 //        List order = dal.findOrder(0, 1);
 //        System.out.println(order.get(0));
-//        Date d2 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-10-12");
-//        String date = new SimpleDateFormat("yyyy-MM-dd").format(d2);
-////        LocalDate d = LocalDate.now();
-//        System.out.println(date);
-//        dal.addOrder(21, 1, date, 4.0f, "sadasdasdasd");
+
+        Date d2 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-10-12");
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(d2);
+//        LocalDate d = LocalDate.now();
+        System.out.println(date);
+        dal.addOrder(1, date, "sadasdasdasd");
 //        List list = dal.getListOrderID();
 //        System.out.println(list.get(0));
 //        dal.deleteOrder(4);
@@ -143,8 +156,8 @@ public class OrderDAL {
 //        dal.updateOrder(1,date,50000);
 //        Order obj = dal.getOrderById(2);
 //        System.out.println(obj);
-        List<Order> list = dal.getAllOrder();
-        System.out.println(list.get(0));
+//        List<Order> list = dal.getAllOrder();
+//        System.out.println(list.get(0));
 ////        list.forEach((t) -> {
 ////            System.out.println(t.toString());
 ////        });

@@ -232,7 +232,6 @@ public class OrderEditForm extends javax.swing.JFrame {
 //        });
 //    }
     public void updateTbOrder(DefaultTableModel model, String CusID, String date, String note, int index) {
-        System.out.println(index);
         model.setValueAt(CusID, index, 1);
         model.setValueAt(date, index, 2);
         model.setValueAt(note, index, 4);
