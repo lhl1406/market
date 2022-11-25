@@ -4,7 +4,12 @@
  */
 package UI.OrderDetail;
 
+import BLL.OrderDetailBLL;
+import BLL.VegetableBLL;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +17,31 @@ import javax.swing.JOptionPane;
  */
 public class OrderDetailEditForm extends javax.swing.JFrame {
 
+    private Object[] VegIdList;
+    private String OrderID , VegID;
+    private OrderDetailBLL ordbll;
+    public int indexRow;
+
     /**
      * Creates new form OrderDetailEditForm
      */
-    public OrderDetailEditForm() {
+    public OrderDetailEditForm(Vector data , int IndexRow) {
+        this.indexRow = IndexRow;
+        this.ordbll = new OrderDetailBLL();
+        this.VegIdList = readVegID();
         initComponents();
+        this.OrderID = data.get(0).toString();
+        this.VegID =data.get(1).toString();
+        cbVegeID.getModel().setSelectedItem((int) data.get(1));
+        txtQuantity.setText(data.get(2).toString());
+        txtPrice.setText(data.get(3).toString());
+
+    }
+
+    public Object[] readVegID() {
+        VegetableBLL VegBll = new VegetableBLL();
+        List list = VegBll.getListVegIDBLL();
+        return list.toArray();
     }
 
     /**
@@ -30,11 +55,11 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
 
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
-        txtVegetable = new UI.UI_Item.textfield.TextField();
         txtQuantity = new UI.UI_Item.textfield.TextField();
-        txtPrice = new UI.UI_Item.textfield.TextField();
         btnUpdate = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
+        cbVegeID = new UI.UI_Item.combobox.ComboBoxSuggestion();
+        txtPrice = new UI.UI_Item.textfield.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,19 +69,10 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
         jLabel1.setText("EDIT ORDER DETAIL");
 
-        txtVegetable.setText("Vegetable ...");
-
         txtQuantity.setText("Quantity ...");
         txtQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtQuantityActionPerformed(evt);
-            }
-        });
-
-        txtPrice.setText("Price ...");
-        txtPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPriceActionPerformed(evt);
             }
         });
 
@@ -84,6 +100,15 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
             }
         });
 
+        cbVegeID.setModel(new javax.swing.DefaultComboBoxModel(VegIdList));
+        cbVegeID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbVegeIDActionPerformed(evt);
+            }
+        });
+
+        txtPrice.setEditable(false);
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -92,16 +117,16 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtVegetable, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbVegeID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -110,15 +135,15 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(txtVegetable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(cbVegeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(46, 46, 46)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,7 +154,9 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,63 +166,82 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantityActionPerformed
 
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if(txtPrice.getText().equals("") || txtQuantity.getText().equals("") || txtVegetable.getText().equals("")){
+        if (txtQuantity.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Fields must not empty",
-               "WARNING", JOptionPane.WARNING_MESSAGE);
+                    "WARNING", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String VegID = cbVegeID.getSelectedItem().toString();
+            String Quantity = txtQuantity.getText();
+            String Price = txtPrice.getText();
+            int check = ordbll.updateOrderDetailBLL(this.OrderID, VegID, Quantity, Price , this.VegID);
+            if (check > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Sửa thành công ");
+                updateTbDetail(OrderDetailForm.model , this.OrderID, VegID, Quantity, Price , indexRow);
+            }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void cbVegeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVegeIDActionPerformed
+        VegetableBLL vegBll = new VegetableBLL();
+        String VegID = cbVegeID.getSelectedItem().toString();
+        String price = vegBll.getVegPriceBLL(VegID).toString();
+        txtPrice.setText(price);
+    }//GEN-LAST:event_cbVegeIDActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new OrderDetailEditForm().setVisible(true);
-            }
-        });
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new OrderDetailEditForm().setVisible(true);
+//            }
+//        });
+//    }
+    
+    public void updateTbDetail(DefaultTableModel model , String OrderID, String VegID , String Quantity , String Price , int index){
+        model.setValueAt(OrderID, index, 0);
+        model.setValueAt(VegID, index, 1);
+        model.setValueAt(Quantity, index, 2);
+        model.setValueAt(Price, index, 3);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnUpdate;
+    private UI.UI_Item.combobox.ComboBoxSuggestion cbVegeID;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
     private UI.UI_Item.textfield.TextField txtPrice;
     private UI.UI_Item.textfield.TextField txtQuantity;
-    private UI.UI_Item.textfield.TextField txtVegetable;
     // End of variables declaration//GEN-END:variables
 }

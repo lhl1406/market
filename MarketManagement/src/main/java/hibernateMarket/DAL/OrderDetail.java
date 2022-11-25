@@ -6,6 +6,7 @@ package hibernateMarket.DAL;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ import lombok.Data;
  *
  * @author VIVOBOOK
  */
+@Data
 @Entity
 @Table (name = "orderdetail")
 @AssociationOverrides({
@@ -68,6 +70,18 @@ public class Orderdetail {
 //    @JoinColumn(name = "VegetableID")
 //    private Vegetable vegetable;
     
+    @Column(name = "Quantity")
     private int Quantity;
+    
+//    @Transient
+//    public int getQuantity(){
+//        return this.Quantity;
+//    }
+
+    @Column(name = "Price")
     private float Price;
+//    @Transient
+//    public float getPrice(){
+//        return this.Price;
+//    }
 }

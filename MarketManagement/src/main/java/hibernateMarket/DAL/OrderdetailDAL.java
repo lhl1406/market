@@ -4,6 +4,7 @@
  */
 package hibernateMarket.DAL;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -13,34 +14,39 @@ import org.hibernate.query.Query;
  * @author VIVOBOOK
  */
 public class OrderdetailDAL {
-     public Session session;
+
+    public Session session;
 
     public OrderdetailDAL() {
         session = HibernateUtils.getSessionFactory().openSession();
     }
-    
-    public List getDetail(int id){
+
+    public List<Orderdetail> getDetail(int id) {
         session.beginTransaction();
-        String hql = "Select o.OrderID FROM Orderdetail o where o.OrderID = :id";
-        Query query = session.createNativeQuery(hql);
+//        String hql = "FROM Orderdetail";
+//        Query query = session.createQuery(hql);
+
+//                List list = session.createQuery("FROM " + Orderdetail.class.getName()).list();
+//                        session.getTransaction().commit();
+//        query.setParameter("id", id);
+//        List list =query.list();
+        Query query = session.createQuery("FROM " + Orderdetail.class.getName() + " where OrderID = :id");
         query.setParameter("id", id);
         List list = query.list();
-        
-//        List list = session.createQuery("FROM " + Orderdetail.class.getName()).list();
-
         return list;
     }
-    
-     public void addDetail(){
+
+    public int addDetail(int OrderID, int VegId, int quantity, float price) {
         session.beginTransaction();
         String hql2 = "INSERT INTO Orderdetail (OrderID , VegetableID , Quantity , Price)"
-                + " VALUES ('" + 0 + "','" + 8 +"','" + 2 + "', '" +300000+"' )";
+                + " VALUES ('" + OrderID + "','" + VegId + "','" + quantity + "', '" + 300000 + "' )";
         Query query = session.createNativeQuery(hql2);
         query.executeUpdate();
         session.getTransaction().commit();
+        return 1;
     }
-    
-    public void deteleDetail(int orderId , int vegetableId){
+
+    public int deteleDetail(int orderId, int vegetableId) {
         session.beginTransaction();
         String hql2 = "DELETE Orderdetail " + "WHERE OrderID = :orderid and VegetableID = :vegetableID";
         Query query = session.createQuery(hql2);
@@ -48,19 +54,29 @@ public class OrderdetailDAL {
         query.setParameter("vegetableID", vegetableId);
         query.executeUpdate();
         session.getTransaction().commit();
+        return 1;
     }
-    
-    public void updateDetail(){
+
+    public int updateDetail(int OrderID, int VegId, int quantity, float price , int vegCur) {
         session.beginTransaction();
-        String hql = "UPDATE Orderdetail set Quantity=3 " + "WHERE OrderID = 2 and VegetableID = 7";
+        String hql = "UPDATE Orderdetail set VegetableID = :vegId ,Quantity= :quantity , Price= :price "
+                + "WHERE OrderID = :orderID and VegetableID = :vegIdCur";
         Query query = session.createQuery(hql);
+        query.setParameter("orderID", OrderID);
+        query.setParameter("vegId", VegId);
+        query.setParameter("quantity", quantity);
+        query.setParameter("price", price);
+        query.setParameter("vegIdCur", vegCur);
 
         query.executeUpdate();
-         session.getTransaction().commit();
-
+        session.getTransaction().commit();
+        return 1;
     }
+
     public static void main(String[] args) {
         OrderdetailDAL dal = new OrderdetailDAL();
-//        System.out.println(dal.getDetail().size());
+//        System.out.println(dal.getDetail(0).get(0));
+//        List<Orderdetail> d = dal.getDetail(0);
+//        System.out.println(d.get(0));
     }
 }

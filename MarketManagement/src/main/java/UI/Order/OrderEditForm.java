@@ -12,6 +12,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,18 +23,19 @@ public class OrderEditForm extends javax.swing.JFrame {
     private Object[] CusIdList;
     private OrderBLL orderBLL;
     private String OrderID;
+    public int IndexRow;
 
     /**
      * Creates new form OrderEditForm
      */
-    public OrderEditForm(Vector data) {
+    public OrderEditForm(Vector data, int indexRow) {
+        this.IndexRow = indexRow;
         orderBLL = new OrderBLL();
         this.CusIdList = readCus();
         initComponents();
-        this.OrderID=data.get(0).toString();
+        this.OrderID = data.get(0).toString();
         cbCustomerID.getModel().setSelectedItem((int) data.get(1));
         txtDate.setText(data.get(2).toString());
-        txtTotal.setText(data.get(3).toString());
         txtNote.setText(data.get(4).toString());
     }
 
@@ -55,7 +57,6 @@ public class OrderEditForm extends javax.swing.JFrame {
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
         txtDate = new UI.UI_Item.textfield.TextField();
-        txtTotal = new UI.UI_Item.textfield.TextField();
         txtNote = new UI.UI_Item.textfield.TextField();
         btnUpdate = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
@@ -73,13 +74,6 @@ public class OrderEditForm extends javax.swing.JFrame {
         txtDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDateActionPerformed(evt);
-            }
-        });
-
-        txtTotal.setText("Total ...");
-        txtTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalActionPerformed(evt);
             }
         });
 
@@ -127,7 +121,6 @@ public class OrderEditForm extends javax.swing.JFrame {
                             .addGap(20, 20, 20)
                             .addComponent(jLabel1))
                         .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addComponent(txtNote, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addComponent(cbCustomerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,13 +138,11 @@ public class OrderEditForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(cbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,10 +167,6 @@ public class OrderEditForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDateActionPerformed
 
-    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalActionPerformed
-
     private void txtNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoteActionPerformed
@@ -189,18 +176,23 @@ public class OrderEditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (txtDate.getText().equals("") || txtNote.getText().equals("") || txtTotal.getText().equals("")) {
+
+        if (txtDate.getText().equals("") || txtNote.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Fields must not empty",
                     "WARNING", JOptionPane.WARNING_MESSAGE);
         } else {
             String CusID = cbCustomerID.getSelectedItem().toString();
             String date = txtDate.getText();
-            String Total = txtTotal.getText();
             String note = txtNote.getText();
             try {
-                orderBLL.editOrderBLL(this.OrderID, CusID, date, Total, note);
+                int check = orderBLL.editOrderBLL(this.OrderID, CusID, date, note);
+                if (check > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Sua thành công ");
+                    updateTbOrder(OrderForm.modelOrder, CusID, date, note, IndexRow);
+                }
             } catch (ParseException ex) {
                 Logger.getLogger(OrderEditForm.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -239,6 +231,12 @@ public class OrderEditForm extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    public void updateTbOrder(DefaultTableModel model, String CusID, String date, String note, int index) {
+        System.out.println(index);
+        model.setValueAt(CusID, index, 1);
+        model.setValueAt(date, index, 2);
+        model.setValueAt(note, index, 4);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private UI.UI_Item.button.MyButton btnBack;
@@ -248,6 +246,5 @@ public class OrderEditForm extends javax.swing.JFrame {
     private UI.UI_Item.button.Panel panel1;
     private UI.UI_Item.textfield.TextField txtDate;
     private UI.UI_Item.textfield.TextField txtNote;
-    private UI.UI_Item.textfield.TextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,7 +38,6 @@ public class VegetableAddForm extends javax.swing.JFrame {
         txtPrice = new UI.UI_Item.textfield.TextField();
         btnFile = new UI.UI_Item.button.MyButton();
         txtLinkImage = new UI.UI_Item.textfield.TextField();
-        cbVegetableID = new UI.UI_Item.combobox.ComboBoxSuggestion();
         cbCateID = new UI.UI_Item.combobox.ComboBoxSuggestion();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,8 +116,6 @@ public class VegetableAddForm extends javax.swing.JFrame {
             }
         });
 
-        cbVegetableID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VegetableID", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" }));
-
         cbCateID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CateID", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" }));
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
@@ -148,7 +145,6 @@ public class VegetableAddForm extends javax.swing.JFrame {
                                     .addComponent(btnFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtLinkImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(cbVegetableID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbCateID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -158,9 +154,7 @@ public class VegetableAddForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(cbVegetableID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addComponent(cbCateID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtVegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,7 +170,7 @@ public class VegetableAddForm extends javax.swing.JFrame {
                     .addComponent(txtLinkImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,7 +262,6 @@ public class VegetableAddForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnFile;
     private UI.UI_Item.button.MyButton btnSave;
     private UI.UI_Item.combobox.ComboBoxSuggestion cbCateID;
-    private UI.UI_Item.combobox.ComboBoxSuggestion cbVegetableID;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
     private UI.UI_Item.textfield.TextField txtAmount;

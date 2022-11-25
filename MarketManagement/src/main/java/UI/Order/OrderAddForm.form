@@ -53,19 +53,17 @@
                               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtDate" alignment="0" pref="259" max="32767" attributes="0"/>
-                          <Component id="txtTotal" alignment="0" pref="259" max="32767" attributes="0"/>
                           <Component id="txtNote" alignment="0" pref="259" max="32767" attributes="0"/>
                           <Component id="cbCustomerID" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -81,15 +79,11 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="cbCustomerID" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtDate" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtTotal" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="txtNote" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace pref="54" max="32767" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,22 +99,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="ADD ORDER"/>
           </Properties>
-        </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtDate">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Date ..."/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDateActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtTotal">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Total ..."/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalActionPerformed"/>
-          </Events>
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtNote">
           <Properties>
@@ -185,6 +163,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbCustomerIDActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new UI.UI_Item.combobox.ComboBoxSuggestion()"/>
           </AuxValues>

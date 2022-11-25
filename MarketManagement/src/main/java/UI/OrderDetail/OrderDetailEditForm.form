@@ -28,7 +28,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -47,19 +50,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnBack" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnUpdate" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="txtVegetable" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtQuantity" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                  <Component id="txtPrice" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtPrice" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="btnUpdate" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtQuantity" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
+                                  <Component id="cbVegeID" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
@@ -72,15 +75,15 @@
                   <Component id="btnBack" min="-2" pref="44" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtVegetable" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Component id="cbVegeID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtQuantity" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
                   <Component id="txtPrice" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="btnUpdate" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,25 +100,12 @@
             <Property name="text" type="java.lang.String" value="EDIT ORDER DETAIL"/>
           </Properties>
         </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtVegetable">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Vegetable ..."/>
-          </Properties>
-        </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtQuantity">
           <Properties>
             <Property name="text" type="java.lang.String" value="Quantity ..."/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQuantityActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtPrice">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Price ..."/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPriceActionPerformed"/>
           </Events>
         </Component>
         <Component class="UI.UI_Item.button.MyButton" name="btnUpdate">
@@ -165,6 +155,21 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbVegeID">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(VegIdList)" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbVegeIDActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="UI.UI_Item.textfield.TextField" name="txtPrice">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

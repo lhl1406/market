@@ -35,8 +35,6 @@ public class ImportForm extends javax.swing.JFrame {
         cbCategory = new UI.UI_Item.combobox.ComboBoxSuggestion();
         jLabel2 = new javax.swing.JLabel();
         txtAmount = new UI.UI_Item.textfield.TextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tbListImport = new UI.UI_Item.table.TableDark();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,21 +67,18 @@ public class ImportForm extends javax.swing.JFrame {
 
         tbProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "1", "kg", "75000"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"1", "1", "kg", "75000", "12"},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Image", "Name", "Unit", "Price"
+                "Image", "Name", "Unit", "Price", "Amount"
             }
         ));
         tbProduct.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(tbProduct);
-        if (tbProduct.getColumnModel().getColumnCount() > 0) {
-            tbProduct.getColumnModel().getColumn(0).setHeaderValue("Image");
-        }
 
         btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/import.png"))); // NOI18N
         btnImport.setText("IMPORT");
@@ -98,21 +93,6 @@ public class ImportForm extends javax.swing.JFrame {
         jLabel2.setText("Amount:");
 
         txtAmount.setText("Enter Amount ...");
-
-        tbListImport.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Tomato", "Vegetable", "kg", "2", "75000"},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "Category", "Unit", "Amount", "Price"
-            }
-        ));
-        tbListImport.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jScrollPane3.setViewportView(tbListImport);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -138,8 +118,7 @@ public class ImportForm extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)))))
                 .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
@@ -161,9 +140,7 @@ public class ImportForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,7 +151,7 @@ public class ImportForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -234,9 +211,7 @@ public class ImportForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private UI.UI_Item.button.Panel panel1;
-    private UI.UI_Item.table.TableDark tbListImport;
     private UI.UI_Item.table.TableDark tbProduct;
     private UI.UI_Item.textfield.TextField txtAmount;
     // End of variables declaration//GEN-END:variables

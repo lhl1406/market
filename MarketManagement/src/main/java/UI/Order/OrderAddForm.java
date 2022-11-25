@@ -5,7 +5,11 @@
 package UI.Order;
 
 import BLL.CustomerBLL;
+import BLL.OrderBLL;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,11 +18,13 @@ import javax.swing.JOptionPane;
  */
 public class OrderAddForm extends javax.swing.JFrame {
     private Object[] CusIdList;
+    private OrderBLL ordBll;
 
     /**
      * Creates new form OrderAddForm
      */
     public OrderAddForm() {
+        this.ordBll = new OrderBLL();
         this.CusIdList = readCus();
         initComponents();
     }
@@ -39,8 +45,6 @@ public class OrderAddForm extends javax.swing.JFrame {
 
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
-        txtDate = new UI.UI_Item.textfield.TextField();
-        txtTotal = new UI.UI_Item.textfield.TextField();
         txtNote = new UI.UI_Item.textfield.TextField();
         btnSave = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
@@ -53,20 +57,6 @@ public class OrderAddForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(20, 54, 66));
         jLabel1.setText("ADD ORDER");
-
-        txtDate.setText("Date ...");
-        txtDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateActionPerformed(evt);
-            }
-        });
-
-        txtTotal.setText("Total ...");
-        txtTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalActionPerformed(evt);
-            }
-        });
 
         txtNote.setText("Note ...");
         txtNote.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +91,11 @@ public class OrderAddForm extends javax.swing.JFrame {
 
         cbCustomerID.setModel(new javax.swing.DefaultComboBoxModel(CusIdList));
         cbCustomerID.setToolTipText("");
+        cbCustomerID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCustomerIDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -112,17 +107,15 @@ public class OrderAddForm extends javax.swing.JFrame {
                         .addGroup(panel1Layout.createSequentialGroup()
                             .addGap(20, 20, 20)
                             .addComponent(jLabel1))
-                        .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addComponent(txtNote, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addComponent(cbCustomerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panel1Layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panel1Layout.createSequentialGroup()
-                            .addGap(232, 232, 232)
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(256, 256, 256)))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -133,15 +126,11 @@ public class OrderAddForm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(19, 19, 19)
                 .addComponent(cbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,14 +149,6 @@ public class OrderAddForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
-
-    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalActionPerformed
-
     private void txtNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoteActionPerformed
@@ -177,16 +158,19 @@ public class OrderAddForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if(txtDate.getText().equals("") ||
-            txtNote.getText().equals("") || 
-            txtTotal.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Fields must not empty",
-               "WARNING", JOptionPane.WARNING_MESSAGE);
+        String Cusid = cbCustomerID.getSelectedItem().toString();
+        String note = txtNote.getText();
+        try {
+            ordBll.addOrderBLL(Cusid, note);
+        } catch (ParseException ex) {
+            Logger.getLogger(OrderAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else{
-            
-        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void cbCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCustomerIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCustomerIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,8 +213,6 @@ public class OrderAddForm extends javax.swing.JFrame {
     private UI.UI_Item.combobox.ComboBoxSuggestion cbCustomerID;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
-    private UI.UI_Item.textfield.TextField txtDate;
     private UI.UI_Item.textfield.TextField txtNote;
-    private UI.UI_Item.textfield.TextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,33 +40,46 @@ public class OrderBLL {
         return orderDAL.getListOrderID();
     }
 
-    public void editOrderBLL(String orderID, String CusID, String date, String Total, String note) throws ParseException {
+    public int editOrderBLL(String orderID, String CusID, String date, String note) throws ParseException {
         int ordID = Integer.parseInt(orderID);
         int cusID = Integer.parseInt(CusID);
         Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        float total = Float.parseFloat(Total);
-        orderDAL.updateOrder(ordID, cusID, date2, total, note);
+        int check = orderDAL.updateOrder(ordID, cusID, date2, note);
+        return check;
     }
 
-    public void deleteOrderBLL(String orderID) {
+    public int deleteOrderBLL(String orderID) {
         int ordID = Integer.parseInt(orderID);
-        orderDAL.deleteOrder(ordID);
+        int check = orderDAL.deleteOrder(ordID);
+        return check;
     }
 
-    public void addOrderBLL(String orderID, String CusID, String date, String Total, String note) throws ParseException {
-        int ordID = Integer.parseInt(orderID);
+    public int addOrderBLL( String CusID, String note) throws ParseException {
+
         int cusID = Integer.parseInt(CusID);
-        Date tamp = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        String date2 = new SimpleDateFormat("yyyy-MM-dd").format(tamp);
-        float total = Float.parseFloat(Total);
-        orderDAL.addOrder(ordID, cusID, date2, total, note);
+        Date d = new Date();
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(d);
+        int check = orderDAL.addOrder( cusID, date, note);
+        return check;
     }
 
     public List findOrderBLL(String orderID, String cusID) {
-        int orderid = Integer.parseInt(orderID);
-        int cusid = Integer.parseInt(cusID);
-        List list = orderDAL.findOrder(orderid, cusid);
+        int orderid = Integer.parseInt(orderID);    
+        List list;
+        if(cusID.equals("")){
+            list = orderDAL.findOrder2(orderid);
+        }
+        else{
+            int cusid = Integer.parseInt(cusID);
+            list = orderDAL.findOrder1(orderid, cusid);
+        }
+        
         return list;
+    }
+
+    public void updateTotalBLL(String Total) {
+        float total = Float.parseFloat(Total);
+        orderDAL.updateTotal(total);
     }
 
     public OrderBLL() {

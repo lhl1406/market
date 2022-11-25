@@ -4,17 +4,36 @@
  */
 package UI.OrderDetail;
 
+import BLL.OrderDetailBLL;
+import UI.Order.OrderForm;
+import hibernateMarket.DAL.Orderdetail;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 84378
  */
 public class OrderDetailForm extends javax.swing.JFrame {
 
+    public Vector tblRow;
+    private String OrderID;
+    private OrderDetailBLL ordBLL;
+    public static DefaultTableModel model;
+    public int indexRow;
+
     /**
      * Creates new form OrderDetailForm
      */
-    public OrderDetailForm() {
+    public OrderDetailForm(Vector data) {
+        this.ordBLL = new OrderDetailBLL();
         initComponents();
+        this.OrderID = data.get(0).toString();
+        btnDoc();
+
     }
 
     /**
@@ -69,6 +88,11 @@ public class OrderDetailForm extends javax.swing.JFrame {
             }
         ));
         tbOrderDetail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tbOrderDetail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbOrderDetailMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbOrderDetail);
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/plus.png"))); // NOI18N
@@ -78,6 +102,11 @@ public class OrderDetailForm extends javax.swing.JFrame {
         btnAdd.setColorClick(new java.awt.Color(43, 147, 72));
         btnAdd.setColorOver(new java.awt.Color(128, 185, 24));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/edit.png"))); // NOI18N
         btnEdit.setText("EDIT");
@@ -86,6 +115,11 @@ public class OrderDetailForm extends javax.swing.JFrame {
         btnEdit.setColorClick(new java.awt.Color(42, 111, 151));
         btnEdit.setColorOver(new java.awt.Color(97, 165, 194));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/delete.png"))); // NOI18N
         btnDelete.setText("DELETE");
@@ -94,6 +128,11 @@ public class OrderDetailForm extends javax.swing.JFrame {
         btnDelete.setColorClick(new java.awt.Color(208, 0, 0));
         btnDelete.setColorOver(new java.awt.Color(249, 65, 68));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -156,6 +195,49 @@ public class OrderDetailForm extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        OrderDetailAddForm ordAdd = new OrderDetailAddForm(OrderID);
+        ordAdd.setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tbOrderDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbOrderDetailMouseClicked
+        indexRow = tbOrderDetail.getSelectedRow();
+        tblRow = new Vector();
+        tblRow.add(tbOrderDetail.getModel().getValueAt(indexRow, 0));
+        tblRow.add(tbOrderDetail.getModel().getValueAt(indexRow, 1));
+        tblRow.add(tbOrderDetail.getModel().getValueAt(indexRow, 2));
+        tblRow.add(tbOrderDetail.getModel().getValueAt(indexRow, 3));
+    }//GEN-LAST:event_tbOrderDetailMouseClicked
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        if (tblRow != null) {
+            OrderDetailEditForm ordEdit = new OrderDetailEditForm(tblRow , indexRow);
+            ordEdit.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn sửa ");
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (tblRow != null) {
+            int input = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa ? ", "Xóa chi tiết đặt hàng", JOptionPane.YES_NO_OPTION);
+            if(input == 0){
+                String orderID = tblRow.get(0).toString();
+                String Vegetable =tblRow.get(1).toString(); 
+                int check = ordBLL.deteleOrderdetailBLL(orderID, Vegetable);
+                if(check > 0){
+                    JOptionPane.showMessageDialog(rootPane, "Xóa thành công ");
+                    btnDoc();
+                }
+                    
+            }
+        }
+         else {
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn xóa ");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -186,9 +268,30 @@ public class OrderDetailForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderDetailForm().setVisible(true);
+//                new OrderDetailForm().setVisible(true);
             }
         });
+    }
+
+    public void btnDoc() {
+        OrderForm order = new OrderForm();
+        List<Orderdetail> list = new ArrayList();
+        OrderDetailBLL bus = new OrderDetailBLL();
+        model = (DefaultTableModel) tbOrderDetail.getModel();
+        model.setRowCount(0);
+        list = bus.getOrderDetailByIDBLL(OrderID);
+        if (list.size() > 0) {
+            for (Orderdetail s : list) {
+                Vector row = new Vector();
+                row.add(s.getOrder().getOrderID());
+                row.add(s.getVegetable().getVegetableID());
+                row.add(s.getQuantity());
+                System.out.println(s.getQuantity());
+                row.add(s.getPrice());
+                model.addRow(row);
+            }
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

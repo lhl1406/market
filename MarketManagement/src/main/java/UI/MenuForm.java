@@ -71,6 +71,7 @@ public class MenuForm extends javax.swing.JFrame {
         btnImport.setBackground(new java.awt.Color(233, 196, 106));
         btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/import2.png"))); // NOI18N
         btnImport.setToolTipText("thinh cute");
+        btnImport.setColor(new java.awt.Color(233, 196, 106));
         btnImport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImportMouseClicked(evt);
@@ -80,6 +81,7 @@ public class MenuForm extends javax.swing.JFrame {
         btnCategory.setBackground(new java.awt.Color(38, 70, 83));
         btnCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/category.png"))); // NOI18N
         btnCategory.setToolTipText("thinh cute");
+        btnCategory.setColor(new java.awt.Color(38, 70, 83));
         btnCategory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCategoryMouseClicked(evt);
@@ -97,6 +99,7 @@ public class MenuForm extends javax.swing.JFrame {
         btnStatistical.setBackground(new java.awt.Color(236, 140, 116));
         btnStatistical.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Statistcal.png"))); // NOI18N
         btnStatistical.setToolTipText("thinh cute");
+        btnStatistical.setColor(new java.awt.Color(236, 140, 116));
         btnStatistical.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnStatisticalMouseClicked(evt);
@@ -115,6 +118,7 @@ public class MenuForm extends javax.swing.JFrame {
         btnOrder.setForeground(new java.awt.Color(231, 111, 81));
         btnOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Order.png"))); // NOI18N
         btnOrder.setToolTipText("thinh cute");
+        btnOrder.setColor(new java.awt.Color(231, 111, 81));
         btnOrder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnOrderMouseClicked(evt);
@@ -125,6 +129,7 @@ public class MenuForm extends javax.swing.JFrame {
         btnCustomer.setForeground(new java.awt.Color(244, 162, 97));
         btnCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/customer.png"))); // NOI18N
         btnCustomer.setToolTipText("thinh cute");
+        btnCustomer.setColor(new java.awt.Color(244, 162, 97));
         btnCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCustomerMouseClicked(evt);
