@@ -27,7 +27,13 @@ public class Vegetable implements Serializable {
     @Column
     private Double Price;
     
+<<<<<<< HEAD
     @ManyToOne
     @JoinColumn(name="CatagoryID")
     private Category catagory;
+=======
+//    @ManyToOne
+//    @JoinColumn(name="CatagoryID")
+//    private Category catagory;
+>>>>>>> hibernate-f3
 }
