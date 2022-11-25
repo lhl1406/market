@@ -52,7 +52,7 @@ public class OrderAddForm extends javax.swing.JFrame {
             }
         });
 
-        txtTotal.setText("Total ...");
+        txtTotal.setEditable(false);
         txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalActionPerformed(evt);

@@ -49,23 +49,24 @@
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
-                              <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtVegetable" alignment="0" pref="259" max="32767" attributes="0"/>
-                                  <Component id="txtQuantity" alignment="0" pref="259" max="32767" attributes="0"/>
-                                  <Component id="txtPrice" alignment="0" pref="259" max="32767" attributes="0"/>
-                                  <Component id="cbCustomerID" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtCity" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtFullName" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="txtCus" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -79,17 +80,19 @@
                   <Component id="btnBack" min="-2" pref="44" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="cbCustomerID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <Component id="txtCus" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="txtFullName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtVegetable" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPassword" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtQuantity" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAddress" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtPrice" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCity" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,28 +109,28 @@
             <Property name="text" type="java.lang.String" value="ADD CUSTOMER"/>
           </Properties>
         </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtVegetable">
+        <Component class="UI.UI_Item.textfield.TextField" name="txtPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Vegetable ..."/>
+            <Property name="text" type="java.lang.String" value="Password ..."/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVegetableActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswordActionPerformed"/>
           </Events>
         </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtQuantity">
+        <Component class="UI.UI_Item.textfield.TextField" name="txtAddress">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quantity ..."/>
+            <Property name="text" type="java.lang.String" value="Address ..."/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQuantityActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAddressActionPerformed"/>
           </Events>
         </Component>
-        <Component class="UI.UI_Item.textfield.TextField" name="txtPrice">
+        <Component class="UI.UI_Item.textfield.TextField" name="txtCity">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Price ..."/>
+            <Property name="text" type="java.lang.String" value="City ..."/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPriceActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCityActionPerformed"/>
           </Events>
         </Component>
         <Component class="UI.UI_Item.button.MyButton" name="btnSave">
@@ -178,23 +181,22 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
           </Events>
         </Component>
-        <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbCustomerID">
+        <Component class="UI.UI_Item.textfield.TextField" name="txtFullName">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
-                <StringItem index="0" value="CustomerID"/>
-                <StringItem index="1" value="1"/>
-                <StringItem index="2" value="1"/>
-                <StringItem index="3" value="1"/>
-                <StringItem index="4" value="1"/>
-                <StringItem index="5" value="1"/>
-                <StringItem index="6" value="1"/>
-                <StringItem index="7" value="1"/>
-                <StringItem index="8" value="1"/>
-                <StringItem index="9" value="1"/>
-              </StringArray>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Full Name ..."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFullNameActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="UI.UI_Item.textfield.TextField" name="txtCus">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCusActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
