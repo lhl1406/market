@@ -49,6 +49,7 @@
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -64,6 +65,23 @@
                                   <Component id="txtCategoryID" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                                   <Component id="txtName" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                                   <Component id="txtDescription" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+=======
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
+                              <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtName" alignment="0" pref="259" max="32767" attributes="0"/>
+                                  <Component id="txtDescription" alignment="0" pref="259" max="32767" attributes="0"/>
+                                  <Component id="txtCateID" alignment="1" pref="259" max="32767" attributes="0"/>
+>>>>>>> origin/hibernate-f2
                               </Group>
                           </Group>
                       </Group>
@@ -78,6 +96,8 @@
                   <Component id="btnBack" min="-2" pref="44" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <Component id="txtCateID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtCategoryID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -86,7 +106,11 @@
                   <Component id="txtDescription" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="39" max="-2" attributes="0"/>
+<<<<<<< HEAD
                   <EmptySpace pref="31" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+>>>>>>> origin/hibernate-f2
               </Group>
           </Group>
         </DimensionLayout>
@@ -159,6 +183,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="UI.UI_Item.textfield.TextField" name="txtCateID">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCateIDActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

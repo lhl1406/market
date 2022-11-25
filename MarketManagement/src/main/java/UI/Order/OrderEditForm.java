@@ -31,7 +31,6 @@ public class OrderEditForm extends javax.swing.JFrame {
         panel1 = new UI.UI_Item.button.Panel();
         jLabel1 = new javax.swing.JLabel();
         txtDate = new UI.UI_Item.textfield.TextField();
-        txtTotal = new UI.UI_Item.textfield.TextField();
         txtNote = new UI.UI_Item.textfield.TextField();
         btnUpdate = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
@@ -49,13 +48,6 @@ public class OrderEditForm extends javax.swing.JFrame {
         txtDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDateActionPerformed(evt);
-            }
-        });
-
-        txtTotal.setText("Total ...");
-        txtTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalActionPerformed(evt);
             }
         });
 
@@ -103,7 +95,6 @@ public class OrderEditForm extends javax.swing.JFrame {
                             .addGap(20, 20, 20)
                             .addComponent(jLabel1))
                         .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addComponent(txtNote, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                         .addComponent(cbCustomerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,13 +112,11 @@ public class OrderEditForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(cbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,10 +141,6 @@ public class OrderEditForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDateActionPerformed
 
-    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalActionPerformed
-
     private void txtNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoteActionPerformed
@@ -165,7 +150,7 @@ public class OrderEditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if(txtDate.getText().equals("") || txtNote.getText().equals("") || txtTotal.getText().equals("")){
+        if(txtDate.getText().equals("") || txtNote.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Fields must not empty",
                "WARNING", JOptionPane.WARNING_MESSAGE);
         }
@@ -214,6 +199,5 @@ public class OrderEditForm extends javax.swing.JFrame {
     private UI.UI_Item.button.Panel panel1;
     private UI.UI_Item.textfield.TextField txtDate;
     private UI.UI_Item.textfield.TextField txtNote;
-    private UI.UI_Item.textfield.TextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -76,6 +76,7 @@ public class CategoryAddForm extends javax.swing.JFrame {
         txtDescription = new UI.UI_Item.textfield.TextField();
         btnSave = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
+        txtCateID = new UI.UI_Item.textfield.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +126,13 @@ public class CategoryAddForm extends javax.swing.JFrame {
             }
         });
 
+        txtCateID.setEditable(false);
+        txtCateID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCateIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -134,6 +142,7 @@ public class CategoryAddForm extends javax.swing.JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabel1))
+<<<<<<< HEAD
                     .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panel1Layout.createSequentialGroup()
                             .addGap(2, 2, 2)
@@ -147,6 +156,21 @@ public class CategoryAddForm extends javax.swing.JFrame {
                                 .addComponent(txtCategoryID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+=======
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panel1Layout.createSequentialGroup()
+                            .addGap(223, 223, 223)
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                            .addGap(46, 46, 46)
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                .addComponent(txtDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                .addComponent(txtCateID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))))
+>>>>>>> origin/hibernate-f2
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -155,6 +179,8 @@ public class CategoryAddForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(txtCateID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtCategoryID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -163,7 +189,11 @@ public class CategoryAddForm extends javax.swing.JFrame {
                 .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                 .addContainerGap(31, Short.MAX_VALUE))
+=======
+                .addGap(40, 40, 40))
+>>>>>>> origin/hibernate-f2
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,6 +249,12 @@ public class CategoryAddForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void txtCateIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCateIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCateIDActionPerformed
+>>>>>>> origin/hibernate-f2
 
     /**
      * @param args the command line arguments
@@ -260,7 +296,11 @@ public class CategoryAddForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnSave;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;
+<<<<<<< HEAD
     private UI.UI_Item.textfield.TextField txtCategoryID;
+=======
+    private UI.UI_Item.textfield.TextField txtCateID;
+>>>>>>> origin/hibernate-f2
     private UI.UI_Item.textfield.TextField txtDescription;
     private UI.UI_Item.textfield.TextField txtName;
     // End of variables declaration//GEN-END:variables

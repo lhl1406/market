@@ -116,7 +116,7 @@
         </Component>
         <Component class="UI.UI_Item.textfield.TextField" name="txtTotal">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Total ..."/>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalActionPerformed"/>
