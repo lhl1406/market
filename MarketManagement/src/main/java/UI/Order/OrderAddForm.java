@@ -4,6 +4,8 @@
  */
 package UI.Order;
 
+import BLL.CustomerBLL;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,14 +13,21 @@ import javax.swing.JOptionPane;
  * @author 84378
  */
 public class OrderAddForm extends javax.swing.JFrame {
+    private Object[] CusIdList;
 
     /**
      * Creates new form OrderAddForm
      */
     public OrderAddForm() {
+        this.CusIdList = readCus();
         initComponents();
     }
-
+    
+     public Object[] readCus() {
+        CustomerBLL customerbll = new CustomerBLL();
+        List list = customerbll.getListCusIDBLL();
+        return list.toArray();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,7 +99,7 @@ public class OrderAddForm extends javax.swing.JFrame {
             }
         });
 
-        cbCustomerID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Customer ID", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" }));
+        cbCustomerID.setModel(new javax.swing.DefaultComboBoxModel(CusIdList));
         cbCustomerID.setToolTipText("");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
@@ -132,7 +141,7 @@ public class OrderAddForm extends javax.swing.JFrame {
                 .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,6 +182,9 @@ public class OrderAddForm extends javax.swing.JFrame {
             txtTotal.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Fields must not empty",
                "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 

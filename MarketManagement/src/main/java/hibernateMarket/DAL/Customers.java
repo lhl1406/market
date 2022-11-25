@@ -19,7 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
-@Table
+@Table (name="customers")
 public class Customers{
 
     @Id
@@ -34,6 +34,7 @@ public class Customers{
     @Column
     private String City;
     
+    @Transient
     @OneToMany (mappedBy = "customer" , fetch = FetchType.LAZY)
     private List<Order> order1; 
     

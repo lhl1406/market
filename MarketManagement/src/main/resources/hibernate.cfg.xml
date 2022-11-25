@@ -19,8 +19,10 @@
         <!-- Show all executed SQL to console -->
         <property name="show_sql">true</property>
         <mapping class="hibernateMarket.DAL.Order" />
-        <mapping class="hibernateMarket.DAL.OrderDetail" />
+        <mapping class="hibernateMarket.DAL.Vegetable" />
         <mapping class="hibernateMarket.DAL.Customers" />
+        <mapping class="hibernateMarket.DAL.Orderdetail" />
+
 
     </session-factory>
 </hibernate-configuration>
