@@ -4,6 +4,7 @@
  */
 package UI.Statistical;
 
+import BLL.StatisticalBLL;
 import UI.MenuForm;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -11,18 +12,21 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 84378
  */
 public class ForTimeForm extends javax.swing.JFrame {
+
     MenuForm home;
     List<Object[][]> data = null;
+    StatisticalBLL sbll = new StatisticalBLL();
     /**
      * Creates new form ForTimeForm
      */
-    public ForTimeForm() {
+    public ForTimeForm() throws SQLException {
         initComponents();
         init();
         initTable();
@@ -41,19 +45,46 @@ public class ForTimeForm extends javax.swing.JFrame {
             }
         });
     }
-public void initTable() throws SQLException {
+    public void init() {
+        data = sbll.statisticalForTime("2021-08-15", "2022-08-16", -1);
+        tbStatistical.fixTable(jScrollPane2);
+    }
+
+    public void initTable() throws SQLException {
         try {
-            //handle
+            LoadStatisticalForTime();
         } catch (Exception ex) {
             Logger.getLogger(ForProductForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public void init() {
+    public void LoadStatisticalForTime() throws Exception {
 //        data = sbll.statisticalForProduct("2021-08-15", "2022-08-16", -1);
-        tbStatistical.fixTable(jScrollPane2);
+        DefaultTableModel model = convertSatistical(data);
+        tbStatistical.setModel(model);
+
     }
+    private DefaultTableModel convertSatistical(List<Object[][]> dataStatistical) {
+        String[] columnNames = {"No", "Date", "Total"};
+        int lenght = dataStatistical.size();
+        int i = 0;
+        Object data[][];
+        data = new Object[lenght][3];
+        for (Object aRow[] : dataStatistical) {
+            data[i][0] = i;
+            data[i][1] = aRow[0];
+            data[i][2] = aRow[1];
+            if (i < lenght) {
+                i = i + 1;
+            } else {
+                break;
+            }
+        }
+        return new DefaultTableModel(data, columnNames);
+    }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -305,11 +336,11 @@ public void initTable() throws SQLException {
     }//GEN-LAST:event_txtToTimeActionPerformed
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-         this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -342,7 +373,11 @@ public void initTable() throws SQLException {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ForTimeForm().setVisible(true);
+                try {
+                    new ForTimeForm().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ForTimeForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

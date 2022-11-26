@@ -22,7 +22,20 @@ public class StatisticalBLL {
     public StatisticalBLL() {
         sdal = new StatisticalDAL();
     }
-    
+    public List<Object[][]> statisticalForTime(String startDate, String endDate, int Quater) {
+         List<Object[][]> listResult = null;
+         String prepareQuery = "";
+        if(Quater == -1) {
+           prepareQuery = " o.Date >= '" + startDate + "' and o.Date <= '" + endDate +"'";
+           listResult = sdal.statisticalForTime(prepareQuery);
+        } else {
+           prepareQuery = " o.Date >= '" + startDate + "' and o.Date <= '" + 
+                        endDate + "' and MONTH(" + Quater +") <= "+ Quater*4 +
+                        "and MONTH(" + Quater +") >= " + (Quater - 1)*4 ;
+           listResult = sdal.statisticalForTime(prepareQuery);
+        }
+        return listResult;
+    }
     public List<Object[][]> statisticalForProduct(String startDate, String endDate, int categoryID) {
         List<Object[][]> listResult = null;
         if(categoryID == -1) {
