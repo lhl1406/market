@@ -1,7 +1,4 @@
 package hibernateMarket.DAL;
-
-
-
 import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -26,7 +23,21 @@ public class CustomerDAL {
 
         return cus;
     }
- 
+    
+    public List searchCustomerID (int CusID) throws SQLException 
+    {
+        List<Customers> cus = null;
+        
+        session.beginTransaction();
+        Query q = session.createQuery("FROM Customers WHERE CustomerID = :cusID");
+        q.setParameter("cusID", CusID);
+        cus = q.list();
+        session.getTransaction().commit();
+        
+        return cus;
+    }
+    
+
     public List searchCustomerName (String CusName) throws SQLException 
     {
         List<Customers> cus = null;
@@ -68,6 +79,7 @@ public class CustomerDAL {
             cus.setCustomerID(c.getCustomerID());
             cus.setFullName(c.getFullName());
             cus.setPassword(c.getPassword());
+            cus.setFullName(c.getFullName());
             cus.setAddress(c.getAddress());
             cus.setCity(c.getCity());
 
@@ -91,6 +103,7 @@ public class CustomerDAL {
             cus.setCustomerID(c.getCustomerID());
             cus.setFullName(c.getFullName());
             cus.setPassword(c.getPassword());
+            cus.setFullName(c.getFullName());
             cus.setAddress(c.getAddress());
             cus.setCity(c.getCity());
 
@@ -109,9 +122,10 @@ public class CustomerDAL {
         int result = -1;
         try {
             session.beginTransaction();
-            
             Customers c = session.get(Customers.class, cusID);
             session.delete(c);
+            Customers cus = session.get(Customers.class, cusID);
+            session.delete(cus);
             session.getTransaction().commit();
             
             result = 1;
@@ -134,4 +148,15 @@ public class CustomerDAL {
 //        query.executeUpdate();
 //        session.getTransaction().commit();
 //    }
+//}
+    
+    //===========================================================
+    public List getListCusID(){
+        session.beginTransaction();
+        String hql = "Select CustomerID FROM Customers";
+        List list =session.createQuery(hql).list();
+        session.getTransaction().commit();
+        return list;
+    }
+         
 }

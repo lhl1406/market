@@ -3,11 +3,11 @@ package BLL;
 import hibernateMarket.DAL.CustomerDAL;
 import hibernateMarket.DAL.Customers;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.List;
 
 public class CustomerBLL {
     private CustomerDAL cusDAL;
+    
     private OrderBLL ordBLL;
     
     public CustomerBLL()
@@ -27,6 +27,13 @@ public class CustomerBLL {
     {
         Customers c = cusDAL.getCustomer(CustomerID);
         return c;
+    }
+    
+    public List searchCustomerID (int cusID) throws SQLException 
+    {
+        List list;
+        list = cusDAL.searchCustomerID(cusID);
+        return list;
     }
     
     public List searchCustomerName (String cusName) throws SQLException 
@@ -115,4 +122,22 @@ public class CustomerBLL {
 //        cusDAL.update(ID, fullname, pass, add, city);
 //    }
 
+//    public int deleteCustomer(int cusID) throws SQLException{
+//        
+//       ordBLL = new OrderBLL();
+//       if (ordBLL.getCusID(cusID).isEmpty() == false) {
+//            return 0;
+//        }
+//       int result = cusDAL.deleteCustomer(cusID);
+//       return result;
+//    }
+    
+   
+    
+    
+    //========================================================
+    public List getListCusIDBLL(){
+        return cusDAL.getListCusID();
+    }
+    
 }

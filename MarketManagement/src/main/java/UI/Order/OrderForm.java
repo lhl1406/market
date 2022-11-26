@@ -4,7 +4,14 @@
  */
 package UI.Order;
 
+import BLL.OrderBLL;
 import UI.OrderDetail.OrderDetailForm;
+import hibernateMarket.DAL.Order;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +19,26 @@ import UI.OrderDetail.OrderDetailForm;
  */
 public class OrderForm extends javax.swing.JFrame {
 
+    private Object[] OrderIdList;
+    public Vector tblRow;
+    private OrderBLL orderBLL;
+    public static DefaultTableModel modelOrder;
+    public int indexRow;
+
     /**
      * Creates new form OrderEditForm
      */
     public OrderForm() {
+        orderBLL = new OrderBLL();
+        this.OrderIdList = readOrder();
         initComponents();
+        btnDoc();
+    }
+
+    public Object[] readOrder() {
+        OrderBLL orderbll = new OrderBLL();
+        List list = orderbll.getListOrderIdBLL();
+        return list.toArray();
     }
 
     /**
@@ -80,11 +102,16 @@ public class OrderForm extends javax.swing.JFrame {
             }
         ));
         tbOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tbOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbOrderMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbOrder);
 
+        cbOrderID.setModel(new javax.swing.DefaultComboBoxModel(OrderIdList));
         cbOrderID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        txtSearch.setText("ENTER ORDER ID");
         txtSearch.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search.png"))); // NOI18N
@@ -94,6 +121,11 @@ public class OrderForm extends javax.swing.JFrame {
         btnSearch.setColorClick(new java.awt.Color(0, 95, 115));
         btnSearch.setColorOver(new java.awt.Color(10, 147, 150));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/plus.png"))); // NOI18N
         btnAdd.setText("ADD");
@@ -128,6 +160,11 @@ public class OrderForm extends javax.swing.JFrame {
         btnDelete.setColorClick(new java.awt.Color(208, 0, 0));
         btnDelete.setColorOver(new java.awt.Color(249, 65, 68));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/file.png"))); // NOI18N
         btnView.setText("VIEW");
@@ -219,7 +256,7 @@ public class OrderForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-         this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -228,18 +265,77 @@ public class OrderForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        OrderEditForm ordEdit = new OrderEditForm();
-        ordEdit.setVisible(true);
+        if (tblRow != null) {
+            OrderEditForm ordEdit = new OrderEditForm(tblRow, indexRow);
+            ordEdit.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn Hàng muốn sửa ");
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        OrderDetailForm ordDetail = new OrderDetailForm();
-        ordDetail.setVisible(true);
+        if (tblRow != null) {
+            OrderDetailForm ordDetail = new OrderDetailForm(tblRow);
+            ordDetail.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn xem ");
+        }
+
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void tbOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbOrderMouseClicked
+        indexRow = tbOrder.getSelectedRow();
+        tblRow = new Vector();
+        tblRow.add(tbOrder.getModel().getValueAt(indexRow, 0));
+        tblRow.add(tbOrder.getModel().getValueAt(indexRow, 1));
+        tblRow.add(tbOrder.getModel().getValueAt(indexRow, 2));
+        tblRow.add(tbOrder.getModel().getValueAt(indexRow, 3));
+        tblRow.add(tbOrder.getModel().getValueAt(indexRow, 4));
+    }//GEN-LAST:event_tbOrderMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (tblRow != null) {
+            int input = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa ? ", "Xóa đặt hàng", JOptionPane.YES_NO_OPTION);
+            if (input == 0) {
+                String orderID = tblRow.get(0).toString();
+                int check = orderBLL.deleteOrderBLL(orderID);
+                if (check > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn xóa ");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Không thể xóa sản phẩm vì chi tiết sản phẩm ");
+
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn Hàng muốn xóa ");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String orderID = cbOrderID.getSelectedItem().toString();
+        String cusID = txtSearch.getText();
+        List<Order> list = orderBLL.findOrderBLL(orderID, cusID);
+        if (list.size() <= 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không tìm được sản phâm");
+        } else {
+            modelOrder.setRowCount(0);
+            for (Order s : list) {
+                Vector row = new Vector();
+                row.add(s.getOrderID());
+                row.add(s.getCustomer().getCustomerID());
+                row.add(s.getDate());
+                row.add(s.getTotal());
+                row.add(s.getNote());
+                modelOrder.addRow(row);
+
+            }
+        }
+
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +372,26 @@ public class OrderForm extends javax.swing.JFrame {
             }
         });
     }
+
+    public void btnDoc() {
+        List list = new ArrayList();
+        OrderBLL bus = new OrderBLL();
+        if (bus.DSHD == null) {
+            list = bus.getAllOrderBLL();
+        }
+        modelOrder = (DefaultTableModel) tbOrder.getModel();
+        modelOrder.setRowCount(0);
+        for (Order s : OrderBLL.DSHD) {
+            Vector row = new Vector();
+            row.add(s.getOrderID());
+            row.add(s.getCustomer().getCustomerID());
+            row.add(s.getDate());
+            row.add(s.getTotal());
+            row.add(s.getNote());
+            modelOrder.addRow(row);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private UI.UI_Item.button.MyButton btnAdd;

@@ -28,7 +28,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -52,10 +55,13 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnUpdate" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtQuantity" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
-                              <Component id="cbVegeID" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtPrice" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="btnUpdate" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtQuantity" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
+                                  <Component id="cbVegeID" alignment="1" min="-2" pref="259" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -73,9 +79,11 @@
                   <Component id="cbVegeID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtQuantity" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <Component id="txtPrice" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="btnUpdate" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -150,17 +158,17 @@
         </Component>
         <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbVegeID">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="VegetableID"/>
-                <StringItem index="1" value="1"/>
-                <StringItem index="2" value="1"/>
-                <StringItem index="3" value="1"/>
-                <StringItem index="4" value="1"/>
-                <StringItem index="5" value="1"/>
-                <StringItem index="6" value="1"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(VegIdList)" type="code"/>
             </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbVegeIDActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="UI.UI_Item.textfield.TextField" name="txtPrice">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

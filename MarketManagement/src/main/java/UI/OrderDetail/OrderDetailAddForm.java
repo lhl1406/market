@@ -4,19 +4,38 @@
  */
 package UI.OrderDetail;
 
+import BLL.OrderBLL;
+import BLL.OrderDetailBLL;
+import BLL.VegetableBLL;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 84378
  */
 public class OrderDetailAddForm extends javax.swing.JFrame {
+    
+    private OrderDetailBLL ordbll ;
+    private Object[] VegIdList;
+    private String OrderID;
 
     /**
      * Creates new form OrderDetailAddForm
      */
-    public OrderDetailAddForm() {
+    public OrderDetailAddForm(String OrderID) {
+        this.ordbll = new OrderDetailBLL();
+        this.VegIdList = readVegID();
+        this.OrderID = OrderID;
         initComponents();
+    }
+
+    public Object[] readVegID() {
+        VegetableBLL VegBll = new VegetableBLL();
+        List list = VegBll.getListVegIDBLL();
+        return list.toArray();
     }
 
     /**
@@ -34,7 +53,6 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
         txtPrice = new UI.UI_Item.textfield.TextField();
         btnSave = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
-        cbOrderID = new UI.UI_Item.combobox.ComboBoxSuggestion();
         cbVegeID = new UI.UI_Item.combobox.ComboBoxSuggestion();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,6 +71,7 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
         });
 
         txtPrice.setEditable(false);
+        txtPrice.setText("30000");
         txtPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPriceActionPerformed(evt);
@@ -83,9 +102,12 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
             }
         });
 
-        cbOrderID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Order Id", "1", "2", "3", "4", "5", "6" }));
-
-        cbVegeID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VegetableID", "1", "1", "1", "1", "1", "1" }));
+        cbVegeID.setModel(new javax.swing.DefaultComboBoxModel(VegIdList));
+        cbVegeID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbVegeIDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -100,14 +122,12 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cbVegeID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                                    .addComponent(cbOrderID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbVegeID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
+                            .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -116,17 +136,15 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(cbOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(cbVegeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(29, 29, 29)
                 .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(35, 35, 35)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,51 +174,79 @@ public class OrderDetailAddForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if(txtPrice.getText().equals("") || txtQuantity.getText().equals("")){
+        if (txtPrice.getText().equals("") || txtQuantity.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Fields must not empty",
-               "WARNING", JOptionPane.WARNING_MESSAGE);
+                    "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            String VegID = cbVegeID.getSelectedItem().toString();
+            String Quantity = txtQuantity.getText();
+            String Price = txtPrice.getText();
+            int check = ordbll.addOrderdetailBLL(this.OrderID, VegID, Quantity, Price);
+            if(check > 0){
+                JOptionPane.showMessageDialog(rootPane, "Them thành công ");
+                String totalOrder = ordbll.getTotalOrder(this.OrderID);
+                OrderBLL orderBLL = new OrderBLL();
+                orderBLL.updateTotalBLL(totalOrder,this.OrderID);
+                addRowTbDetail(OrderDetailForm.model , this.OrderID, VegID, Quantity, Price);
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void cbVegeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVegeIDActionPerformed
+        VegetableBLL vegBll = new VegetableBLL();
+        String VegID = cbVegeID.getSelectedItem().toString();
+        String price = vegBll.getVegPriceBLL(VegID).toString();
+        txtPrice.setText(price);
+
+    }//GEN-LAST:event_cbVegeIDActionPerformed
+    
+    public void addRowTbDetail(DefaultTableModel model , String OrderID, String VegID,String Quantity , String Price){
+        Vector row=new Vector();  
+        row.add(OrderID);
+        row.add(VegID);
+        row.add(Quantity);
+        row.add(Price);
+        model.addRow(row);
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new OrderDetailAddForm().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(OrderDetailAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new OrderDetailAddForm().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnSave;
-    private UI.UI_Item.combobox.ComboBoxSuggestion cbOrderID;
     private UI.UI_Item.combobox.ComboBoxSuggestion cbVegeID;
     private javax.swing.JLabel jLabel1;
     private UI.UI_Item.button.Panel panel1;

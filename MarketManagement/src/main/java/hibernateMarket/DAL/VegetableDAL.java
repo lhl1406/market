@@ -83,6 +83,51 @@ public class VegetableDAL {
         }
         return result;
     }
+//    public int addVegetable(Vegetable v) throws SQLException {
+//        int result = -1;
+//        try {
+//            session.beginTransaction();
+//            Vegetable veg = new Vegetable();
+//            veg.setVegetableID(v.getVegetableID());
+//            veg.setCatagory(v.getCatagory());
+//            veg.setVegetableName(v.getVegetableName());
+//            veg.setUnit(v.getUnit());
+//            veg.setAmount(v.getAmount());
+//            veg.setImage(v.getImage());
+//            veg.setPrice(v.getPrice());
+//
+//            session.save(veg);
+//            session.getTransaction().commit();
+//            result = 1;
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//            result = -1;
+//        }
+//        return result;
+//    }
+
+//    public int updateVegetable(Vegetable v) throws SQLException {
+//        int result = -1;
+//        try {
+//            session.beginTransaction();
+//            Vegetable veg = new Vegetable();
+//            veg.setVegetableID(v.getVegetableID());
+//            veg.setCatagory(v.getCatagory());
+//            veg.setVegetableName(v.getVegetableName());
+//            veg.setUnit(v.getUnit());
+//            veg.setAmount(v.getAmount());
+//            veg.setImage(v.getImage());
+//            veg.setPrice(v.getPrice());
+//
+//            session.update(v);
+//            session.getTransaction().commit();
+//            result = 1;
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//            result = -1;
+//        }
+//        return result;
+//    }
     public int updateAmount(Vegetable v) throws SQLException {
         int result = -1;
         try {
@@ -136,9 +181,30 @@ public class VegetableDAL {
     
     public static void main(String[] args) throws SQLException {
         VegetableDAL vegDAL = new VegetableDAL();
-        Vegetable v = new Vegetable();
-        v.setAmount(10);
-        System.out.println(vegDAL.loadTableImport(1));     
+//<<<<<<< HEAD
+//        Vegetable v = new Vegetable();
+//        v.setAmount(10);
+//        System.out.println(vegDAL.loadTableImport(1));     
+//=======
+        System.out.println(vegDAL.getVegetablePrice(1));
+    }
+    
+    //======================================================
+    public List getListVegetableID(){
+        session.beginTransaction();
+        String hql = "Select VegetableID FROM Vegetable";
+        List list =session.createQuery(hql).list();
+        session.getTransaction().commit();
+        return list;
+    }
+    public Double getVegetablePrice(int VegID){
+       session.beginTransaction();
+       String hql = "Select Price FROM Vegetable where VegetableID = :id";
+       Query query =session.createQuery(hql);
+       query.setParameter("id", VegID);
+       Double result =  (Double) query.uniqueResult();   
+       session.getTransaction().commit();
+       return result; 
     }
 
 }

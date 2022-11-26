@@ -1,6 +1,6 @@
 
 package hibernateMarket.DAL;
-import BLL.OrderBLL;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -11,9 +11,11 @@ import org.hibernate.query.Query;
 
 /**
  *
+<<<<<<< HEAD
  * @author Tran Ngan
  */
 public class OrderDAL {
+
     public Session session;
 
     public OrderDAL() {
@@ -26,16 +28,7 @@ public class OrderDAL {
         session.getTransaction().commit();
         return orderList;
     }
-    
-//    public List getDetail(){
-//        session.beginTransaction();
-////        String hql = "Select OrderID FROM Orderdetail";
-////        List list = session.createQuery(hql).list();
-//        List list = session.createQuery("FROM " + Orderdetail.class.getName()).list();
-//
-//        session.getTransaction().commit();
-//        return list;
-//    }
+
 
     public Order getOrderById(int orderid) {
         Order order = session.get(Order.class, orderid);
@@ -50,27 +43,37 @@ public class OrderDAL {
         return list;
     }
 
-    public void updateOrder(int orderID, int cusID, Date date, float total, String note) {
+//<<<<<<< HEAD
+//    public void updateOrder(int orderID, int cusID, Date date, float total, String note) {
+//        session.beginTransaction();
+//        String hql = "UPDATE Order set CustomerID = :cusid , Date = :date ,Total = :total , Note = :note " + "WHERE OrderID = :Id";
+//        Query query = session.createQuery(hql);
+//        query.setParameter("cusid", cusID);
+//        query.setParameter("date", date);
+//        query.setParameter("total", total);
+//=======
+    public int updateOrder(int orderID, int cusID, Date date, String note) {
         session.beginTransaction();
-        String hql = "UPDATE Order set CustomerID = :cusid , Date = :date ,Total = :total , Note = :note " + "WHERE OrderID = :Id";
+        String hql = "UPDATE Order set CustomerID = :cusid , Date = :date  , Note = :note " + "WHERE OrderID = :Id";
         Query query = session.createQuery(hql);
         query.setParameter("cusid", cusID);
         query.setParameter("date", date);
-        query.setParameter("total", total);
         query.setParameter("note", note);
         query.setParameter("Id", orderID);
         query.executeUpdate();
         session.getTransaction().commit();
+        return 1;
     }
 
-    public void addOrder(int orderID, int cusID, String date, float total, String note) {
+    public int addOrder(int cusID, String date, String note) {
+        System.out.println(date);
         session.beginTransaction();
 //        System.out.println(date);
 //        String hql = "insert into order1 (OrderID , CustomerID , Date , Total , Note)"
 //                + "values(' :orderID ', ':cusID' , ':date' , ':total' , ':note')";
-        
-        String hql2 = "INSERT INTO order1 (OrderID , CustomerID , Date , Total , Note)"
-                + " VALUES ('" + orderID + "','" + cusID +"','" + date + "', '" +total +"', '')";
+
+        String hql2 = "INSERT INTO order1 ( CustomerID , Date , Total , Note)"
+                + " VALUES ('" + cusID + "','" + date + "', '" + 0 + "', '" + note + "')";
         Query query = session.createNativeQuery(hql2);
 //        
 ////        Query query = session.createNativeQuery(hql);
@@ -81,37 +84,127 @@ public class OrderDAL {
 //        query.setParameter("note", note);
         query.executeUpdate();
         session.getTransaction().commit();
-    }
-
-    public void deleteOrder(int orderID) {
-        session.beginTransaction();
-        String hql = "DELETE Order " + "WHERE OrderID = :Id";
-        Query query = session.createQuery(hql);
-        query.setParameter("Id", orderID);
-        query.executeUpdate();
-        session.getTransaction().commit();
+//<<<<<<< HEAD
+//    }
+//
+//    public void deleteOrder(int orderID) {
+//        session.beginTransaction();
+//        String hql = "DELETE Order " + "WHERE OrderID = :Id";
+//        Query query = session.createQuery(hql);
+//        query.setParameter("Id", orderID);
+//        query.executeUpdate();
+//        session.getTransaction().commit();
+//    }
+//    
+//    public List findOrder(int orderID , int cusID ){
+//        session.beginTransaction();
+//        String hql = "FROM Order where CustomerID = :cusID and OrderID = :orderID";
+//        Query query = session.createQuery(hql);
+//        query.setParameter("cusID", 1);
+//        query.setParameter("orderID", 0);
+//=======
+        return 1;
     }
     
-    public List findOrder(int orderID , int cusID ){
+    public int getOrderLastID(){
+        session.beginTransaction();
+        String hql = "Select Max(OrderID) FROM Order";
+        Query query = session.createQuery(hql);
+        int result = (int) query.uniqueResult();
+        session.getTransaction().commit();
+        return result;
+    }
+    
+    public int deleteOrder(int orderID) {
+        int result;
+        try {
+            session.beginTransaction();
+            String hql = "DELETE Order " + "WHERE OrderID = :Id";
+            Query query = session.createQuery(hql);
+            query.setParameter("Id", orderID);
+            query.executeUpdate();
+            session.getTransaction().commit();
+            result = 1;
+        } catch (Exception e) {
+            result = 0;
+        }
+
+        return result;
+    }
+
+    public List findOrder1(int orderID, int cusID) {
         session.beginTransaction();
         String hql = "FROM Order where CustomerID = :cusID and OrderID = :orderID";
         Query query = session.createQuery(hql);
-        query.setParameter("cusID", 1);
-        query.setParameter("orderID", 0);
+        query.setParameter("cusID", cusID);
+        query.setParameter("orderID", orderID);
         List list = query.list();
         session.getTransaction().commit();
         return list;
     }
-    
+//<<<<<<< HEAD
+//    
     public List getOrderInCustomer(int customerID) {
          session.beginTransaction();
         String hql = "FROM Order where CustomerID = :cusID";
         Query query = session.createQuery(hql);
         query.setParameter("cusID", customerID);
+        return query.list();
+    }
+//=======
+
+    public List findOrder2(int orderID) {
+        session.beginTransaction();
+        String hql = "FROM Order where OrderID = :orderID";
+        Query query = session.createQuery(hql);
+        query.setParameter("orderID", orderID);
         List list = query.list();
         session.getTransaction().commit();
         return list;
     }
 
-}
+//<<<<<<< HEAD
+//}
+//
+//=======
+    public void updateTotal(float total, int OrderID) {
+        session.beginTransaction();
+        String hql = "UPDATE Order set Total = :total " + "WHERE OrderID = :Id";
+        Query query = session.createQuery(hql);
+        query.setParameter("total", total);
+        query.setParameter("Id", OrderID);
+        query.executeUpdate();
+        session.getTransaction().commit();
+    }
 
+    public static void main(String args[]) throws ParseException {
+        OrderDAL dal = new OrderDAL();
+//        System.out.println(dal.getOrderLastID());
+
+//        dal.addDetail();
+//        List order = dal.getDetail();
+//        System.out.println(order.size());
+//        
+//        List order = dal.findOrder(0, 1);
+//        System.out.println(order.get(0));
+
+        Date d2 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-10-12");
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(d2);
+//        LocalDate d = LocalDate.now();
+        System.out.println(date);
+        dal.addOrder(1, date, "sadasdasdasd");
+//        List list = dal.getListOrderID();
+//        System.out.println(list.get(0));
+//        dal.deleteOrder(4);
+//        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2022-10-19");
+//        System.out.println("Date "+date);
+//        dal.updateOrder(1,date,50000);
+//        Order obj = dal.getOrderById(2);
+//        System.out.println(obj);
+//        List<Order> list = dal.getAllOrder();
+//        System.out.println(list.get(0));
+////        list.forEach((t) -> {
+////            System.out.println(t.toString());
+////        });
+    }
+}

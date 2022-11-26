@@ -1,27 +1,23 @@
 package hibernateMarket.DAL;
-
-
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 import javax.persistence.*;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import lombok.Data;
 import org.hibernate.*;
+import org.hibernate.annotations.GenericGenerator;
+
 
 @Data
 @Entity
-@Table
-public class Customers implements Serializable {
-    
+@Table (name="customers")
+public class Customers implements Serializable{
+
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column
-    public int CustomerID;
+    @GeneratedValue 
+    private int CustomerID;
     @Column
     private String FullName;
     @Column
@@ -30,9 +26,32 @@ public class Customers implements Serializable {
     private String Address;
     @Column
     private String City;
-    
     @OneToMany (mappedBy = "customers")  
     private List<Order> listOrder;
+    @Transient
+    @OneToMany (mappedBy = "customer" , fetch = FetchType.LAZY)
+    private List<Order> order1; 
+    
+    public Customers(){
+        
+    }
+
+    public Customers(int CustomerID, String FullName, String Password, String Address, String City) {
+        super();
+        this.CustomerID = CustomerID;
+        this.FullName = FullName;
+        this.Password = Password;
+        this.Address = Address;
+        this.City = City;
+    }
+
+    public Customers(String FullName, String Password, String Address, String City) {
+        super();
+        this.FullName = FullName;
+        this.Password = Password;
+        this.Address = Address;
+        this.City = City;
+    }
     
      public int getCustomerID() {
         return CustomerID;
@@ -82,9 +101,15 @@ public class Customers implements Serializable {
         this.listOrder = listOrder;
     }
     
+//    @Override
+//    public String toString()
+//    {
+//        return this.FullName;
+//    }
     @Override
     public String toString()
     {
-        return this.FullName;
+        return "Customer [Ma=" + CustomerID + ", Ten=" + FullName + ", Matkhau=" + Password
+			+ ", Diachi=" + Address + ", Thanhpho=" + City + "]";
     }
 }
