@@ -326,7 +326,7 @@ public class OrderForm extends javax.swing.JFrame {
             for (Order s : list) {
                 Vector row = new Vector();
                 row.add(s.getOrderID());
-                row.add(s.getCustomer().getCustomerID());
+                row.add(s.getCustomers().getCustomerID());
                 row.add(s.getDate());
                 row.add(s.getTotal());
                 row.add(s.getNote());
@@ -384,7 +384,7 @@ public class OrderForm extends javax.swing.JFrame {
         for (Order s : OrderBLL.DSHD) {
             Vector row = new Vector();
             row.add(s.getOrderID());
-            row.add(s.getCustomer().getCustomerID());
+            row.add(s.getCustomers().getCustomerID());
             row.add(s.getDate());
             row.add(s.getTotal());
             row.add(s.getNote());

@@ -4,6 +4,7 @@
  */
 package hibernateMarket.DAL;
 
+import java.io.Serializable;
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
@@ -31,10 +32,11 @@ import lombok.Data;
     @AssociationOverride (name = "primaryKey.vegetable",
             joinColumns = @JoinColumn(name="VegetableID"))
 })
-public class Orderdetail {
+public class Orderdetail implements Serializable {
+    
     private OrderdetailID primaryKey = new OrderdetailID();
     
-    @EmbeddedId
+    @Id
     public OrderdetailID getPrimaryKey() {
         return primaryKey;
     }
@@ -84,4 +86,5 @@ public class Orderdetail {
 //    public float getPrice(){
 //        return this.Price;
 //    }
+
 }
