@@ -33,7 +33,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="order1")
+@Table(name="orders")
 
 public class Order implements Serializable{
     @Id

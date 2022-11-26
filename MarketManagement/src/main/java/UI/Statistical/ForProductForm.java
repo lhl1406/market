@@ -4,17 +4,117 @@
  */
 package UI.Statistical;
 
+import BLL.CategoryBLL;
+import BLL.StatisticalBLL;
+import UI.MenuForm;
+import hibernateMarket.DAL.Category;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author 84378
  */
 public class ForProductForm extends javax.swing.JFrame {
 
+    StatisticalBLL sbll = new StatisticalBLL();
+    CategoryBLL cbll = new CategoryBLL();
+    MenuForm home;
+    List<Object[][]> data = null;
+
     /**
      * Creates new form ForProductForm
      */
-    public ForProductForm() {
+    public ForProductForm() throws SQLException {
         initComponents();
+        init();
+        initTable();
+        LoadCbOrderID();
+        this.setLocationRelativeTo(null);
+        this.home = new MenuForm();
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(home.DISPOSE_ON_CLOSE);
+                home.setVisible(true);
+            }
+        });
+
+    }
+
+    public void initTable() throws SQLException {
+        try {
+            LoadStatisticalForProduct();
+        } catch (Exception ex) {
+            Logger.getLogger(ForProductForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void init() {
+        data = sbll.statisticalForProduct("2021-08-15", "2022-08-16", -1);
+        tbStatistical.fixTable(jScrollPane2);
+    }
+
+    public void LoadCbOrderID() {
+        List<Category> ListO = cbll.loadCategory();
+        for (int i = 0; i < ListO.size(); i++) {
+            cbCategory.addItem(ListO.get(i).getCatagoryID());
+        }
+    }
+     private void setTotal() {
+        int length = tbStatistical.getRowCount();
+        TableModel model = tbStatistical.getModel();
+        float total = 0;
+        for(int i = 0; i< length; i++) {
+            total += Float.parseFloat(model.getValueAt(i, 4).toString());
+        }
+        txtSumTotal.setText(total + "vnd");
+    }
+
+    public void LoadStatisticalForProduct() throws Exception {
+//        data = sbll.statisticalForProduct("2021-08-15", "2022-08-16", -1);
+        DefaultTableModel model = convertSatistical(data);
+        tbStatistical.setModel(model);
+        setTotal();
+
+    }
+
+
+
+    private DefaultTableModel convertSatistical(List<Object[][]> dataStatistical) {
+        String[] columnNames = {"OrderID", "Name", "Quantity", "Price", "Total", "CustomerID", "Date"};
+        int lenght = dataStatistical.size();
+        int i = 0;
+        Object data[][];
+        data = new Object[lenght][7];
+        for (Object aRow[] : dataStatistical) {
+            data[i][0] = aRow[0];
+            data[i][1] = aRow[1];
+            data[i][2] = aRow[2];
+            data[i][3] = aRow[3];
+            data[i][4] = aRow[4];
+            data[i][5] = aRow[5];
+            data[i][6] = aRow[6];
+            if (i < lenght) {
+                i = i + 1;
+            } else {
+                break;
+            }
+        }
+        return new DefaultTableModel(data, columnNames);
     }
 
     /**
@@ -67,7 +167,6 @@ public class ForProductForm extends javax.swing.JFrame {
 
         tbStatistical.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Tomato", "4", "12000", "48000", "1", "11/15/2022"},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -87,6 +186,18 @@ public class ForProductForm extends javax.swing.JFrame {
         btnView.setColorClick(new java.awt.Color(43, 147, 72));
         btnView.setColorOver(new java.awt.Color(128, 185, 24));
         btnView.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnViewMouseClicked(evt);
+            }
+        });
+
+        cbCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "all" }));
+        cbCategory.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbCategoryItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -107,7 +218,14 @@ public class ForProductForm extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(20, 54, 66));
         jLabel7.setText("Time:");
 
-        txtFromTime.setText("dd/mm/yyyy");
+        txtFromTime.setText("yyyy-mm-dd");
+        txtFromTime.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtFromTimeInputMethodTextChanged(evt);
+            }
+        });
         txtFromTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFromTimeActionPerformed(evt);
@@ -117,7 +235,7 @@ public class ForProductForm extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("-");
 
-        txtToTime.setText("dd/mm/yyyy");
+        txtToTime.setText("yyyy-mm-dd");
         txtToTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtToTimeActionPerformed(evt);
@@ -136,8 +254,8 @@ public class ForProductForm extends javax.swing.JFrame {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtFromTime, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
+                                .addComponent(txtFromTime, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addGap(26, 26, 26)
                                 .addComponent(txtToTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,17 +335,78 @@ public class ForProductForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtToTimeActionPerformed
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-         this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+   
+    private void cbCategoryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCategoryItemStateChanged
+        String txtFrom = "2021-08-15";
+        String txtTo = "2022-08-16";
+        String Regex = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
+        
+        if (txtFromTime.getText().matches(Regex) && txtToTime.getText().matches(Regex)) {
+            txtFrom = txtFromTime.getText();
+            txtTo = txtToTime.getText();
+        }
+       
+        if (cbCategory.getSelectedItem().toString().equals("all")) {
+            try {
+                data = sbll.statisticalForProduct(txtFrom, txtTo, -1);
+            } catch (Exception ex) {
+                Logger.getLogger(ForProductForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                data = sbll.statisticalForProduct(txtFrom, txtTo, Integer.parseInt(cbCategory.getSelectedItem().toString()));
+            } catch (Exception ex) {
+                Logger.getLogger(ForProductForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            LoadStatisticalForProduct();
+        } catch (Exception ex) {
+            Logger.getLogger(ForProductForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model = convertSatistical(data);
+        tbStatistical.setModel(model);
+    }//GEN-LAST:event_cbCategoryItemStateChanged
+
+    private void btnViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMouseClicked
+        // xử lý k nhập hoặc sai
+        String txtFrom = "2021-08-15";
+        String txtTo = "2022-08-16";
+        String Regex = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
+        
+        if (txtFromTime.getText().matches(Regex) && txtToTime.getText().matches(Regex)) {
+            
+            txtFrom = txtFromTime.getText();
+            txtTo = txtToTime.getText();
+        } else {
+             JOptionPane.showMessageDialog(this, "Error Format {yyyy/mm/dd}", "message", JOptionPane.ERROR_MESSAGE);
+             return;
+        }
+        int CategoryID = -1;
+        if (!cbCategory.getSelectedItem().toString().equals("all")) {
+            CategoryID = Integer.parseInt(cbCategory.getSelectedItem().toString());
+        }
+        data = sbll.statisticalForProduct(txtFrom, txtTo, CategoryID);
+        DefaultTableModel model = convertSatistical(data);
+        tbStatistical.setModel(model);
+        setTotal();
+    }//GEN-LAST:event_btnViewMouseClicked
+
+    private void txtFromTimeInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtFromTimeInputMethodTextChanged
+
+        
+    }//GEN-LAST:event_txtFromTimeInputMethodTextChanged
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -254,7 +433,11 @@ public class ForProductForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ForProductForm().setVisible(true);
+                try {
+                    new ForProductForm().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ForProductForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -275,4 +458,8 @@ public class ForProductForm extends javax.swing.JFrame {
     private UI.UI_Item.textfield.TextField txtSumTotal;
     private UI.UI_Item.textfield.TextField txtToTime;
     // End of variables declaration//GEN-END:variables
+
+    private void setTotal(List<Object[][]> data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

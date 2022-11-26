@@ -4,19 +4,56 @@
  */
 package UI.Statistical;
 
+import UI.MenuForm;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author 84378
  */
 public class ForTimeForm extends javax.swing.JFrame {
-
+    MenuForm home;
+    List<Object[][]> data = null;
     /**
      * Creates new form ForTimeForm
      */
     public ForTimeForm() {
         initComponents();
+        init();
+        initTable();
+        this.setLocationRelativeTo(null);
+        this.home = new MenuForm();
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(home.DISPOSE_ON_CLOSE);
+                home.setVisible(true);
+            }
+        });
+    }
+public void initTable() throws SQLException {
+        try {
+            //handle
+        } catch (Exception ex) {
+            Logger.getLogger(ForProductForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
+    public void init() {
+//        data = sbll.statisticalForProduct("2021-08-15", "2022-08-16", -1);
+        tbStatistical.fixTable(jScrollPane2);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

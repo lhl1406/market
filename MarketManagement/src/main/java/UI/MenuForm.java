@@ -11,6 +11,9 @@ import UI.Order.OrderForm;
 import UI.Statistical.ForProductForm;
 import UI.Statistical.ForTimeForm;
 import UI.Vegetable.VegetableForm;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -271,8 +274,12 @@ public class MenuForm extends javax.swing.JFrame {
                         options,
                         options[0]);
                 if(result == JOptionPane.YES_OPTION){
-                    ForProductForm forp = new ForProductForm();
-                    forp.setVisible(true);
+            try {
+                ForProductForm forp = new ForProductForm();
+                forp.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 }else if (result == JOptionPane.NO_OPTION){
                     ForTimeForm fort = new ForTimeForm();
                     fort.setVisible(true);

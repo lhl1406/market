@@ -24,4 +24,8 @@ public class TextField extends JTextField {
                 new EmptyBorder(6,15,6, 5)));
         
     }
+
+    public void setText(float total) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

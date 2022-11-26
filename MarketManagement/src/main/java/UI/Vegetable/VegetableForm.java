@@ -30,6 +30,7 @@ public class VegetableForm extends javax.swing.JFrame {
         List list = vegBLL.loadVegetable();
         DefaultTableModel model = convertVegetable(list);
         tbVegetable.setModel(model);
+        tbVegetable.fixTable(jScrollPane2);
     }
     private DefaultTableModel convertVegetable(List list) {
         String[] columnNames = {"VegetableID", "CategoryID", "VegetableName","Unit","Amount","Image","Price"};
@@ -256,8 +257,8 @@ public class VegetableForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        VegetableEditForm vetEdit = new VegetableEditForm();
-        vetEdit.setVisible(true);
+//        VegetableEditForm vetEdit = new VegetableEditForm();
+//        vetEdit.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
