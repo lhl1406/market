@@ -281,8 +281,12 @@ public class MenuForm extends javax.swing.JFrame {
                 Logger.getLogger(MenuForm.class.getName()).log(Level.SEVERE, null, ex);
             }
                 }else if (result == JOptionPane.NO_OPTION){
-                    ForTimeForm fort = new ForTimeForm();
-                    fort.setVisible(true);
+            try {
+                ForTimeForm fort = new ForTimeForm();
+                fort.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 } 
     }//GEN-LAST:event_btnStatisticalMouseClicked
 
