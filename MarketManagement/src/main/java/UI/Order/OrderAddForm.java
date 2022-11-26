@@ -170,7 +170,7 @@ public class OrderAddForm extends javax.swing.JFrame {
             String date = (String) list.get(0);
             if ( check > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Thêm thành công ");
-                int LastOrderID = ordBll.getLastIDBLL()+1;
+                int LastOrderID = ordBll.getLastIDBLL();
                 addTbOrder(OrderForm.modelOrder, LastOrderID, Cusid, date, note);
             }
         } catch (ParseException ex) {
@@ -188,6 +188,7 @@ public class OrderAddForm extends javax.swing.JFrame {
         row.add(LastID);
         row.add(CusID);
         row.add(date);
+        row.add(0);
         row.add(note);
         model.addRow(row);
     }

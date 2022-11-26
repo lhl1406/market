@@ -5,6 +5,7 @@
 package UI.Order;
 
 import BLL.OrderBLL;
+import BLL.OrderDetailBLL;
 import UI.OrderDetail.OrderDetailForm;
 import hibernateMarket.DAL.Order;
 import java.util.ArrayList;
@@ -302,13 +303,21 @@ public class OrderForm extends javax.swing.JFrame {
             int input = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa ? ", "Xóa đặt hàng", JOptionPane.YES_NO_OPTION);
             if (input == 0) {
                 String orderID = tblRow.get(0).toString();
-                int check = orderBLL.deleteOrderBLL(orderID);
-                if (check > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Hãy chọn hàng muốn xóa ");
+                OrderDetailBLL ordetailBll = new OrderDetailBLL();
+                int length = ordetailBll.checkOrddetail(orderID);
+                if (length > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Không thể xóa sản phẩm vì có chi tiết sản phẩm ");
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Không thể xóa sản phẩm vì chi tiết sản phẩm ");
+                    int check = orderBLL.deleteOrderBLL(orderID);
+                    if (check > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Xóa thành công ");
+                        btnDoc();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Không thể xóa sản phẩm ");
 
+                    }
                 }
+
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Hãy chọn Hàng muốn xóa ");

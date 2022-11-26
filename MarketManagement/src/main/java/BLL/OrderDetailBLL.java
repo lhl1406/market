@@ -56,4 +56,10 @@ public class OrderDetailBLL {
         Double total = orderdetailDAL.getTotalOrder(orderID);
         return total.toString();
     }
+    
+    public int checkOrddetail(String OrderID){
+        int orderID = Integer.parseInt(OrderID);
+        int length = orderdetailDAL.checkOrdetail(orderID);
+        return length;
+    }
 }

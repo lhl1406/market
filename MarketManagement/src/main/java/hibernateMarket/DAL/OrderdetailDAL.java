@@ -83,6 +83,14 @@ public class OrderdetailDAL {
         return result;
     }
 
+    public int checkOrdetail(int OrderID) {
+        session.beginTransaction();
+        Query query = session.createQuery("FROM " + Orderdetail.class.getName() + " where OrderID = :id");
+        query.setParameter("id", OrderID);
+        List list = query.list();
+        return list.size();
+    }
+
     public static void main(String[] args) {
         OrderdetailDAL dal = new OrderdetailDAL();
 //        System.out.println(dal.getTotalOrder(1));

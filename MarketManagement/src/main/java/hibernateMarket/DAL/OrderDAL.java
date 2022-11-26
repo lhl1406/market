@@ -56,20 +56,9 @@ public class OrderDAL {
     public int addOrder(int cusID, String date, String note) {
         System.out.println(date);
         session.beginTransaction();
-//        System.out.println(date);
-//        String hql = "insert into order1 (OrderID , CustomerID , Date , Total , Note)"
-//                + "values(' :orderID ', ':cusID' , ':date' , ':total' , ':note')";
-
         String hql2 = "INSERT INTO order1 ( CustomerID , Date , Total , Note)"
                 + " VALUES ('" + cusID + "','" + date + "', '" + 0 + "', '" + note + "')";
         Query query = session.createNativeQuery(hql2);
-//        
-////        Query query = session.createNativeQuery(hql);
-//        query.setParameter("orderID", orderID);
-//        query.setParameter("cusid", cusID);
-//        query.setParameter("date", date);
-//        query.setParameter("total", total);
-//        query.setParameter("note", note);
         query.executeUpdate();
         session.getTransaction().commit();
         return 1;

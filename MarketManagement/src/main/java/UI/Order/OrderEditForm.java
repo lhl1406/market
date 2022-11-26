@@ -34,7 +34,7 @@ public class OrderEditForm extends javax.swing.JFrame {
         this.CusIdList = readCus();
         initComponents();
         this.OrderID = data.get(0).toString();
-        cbCustomerID.getModel().setSelectedItem((int) data.get(1));
+        cbCustomerID.getModel().setSelectedItem(data.get(1));
         txtDate.setText(data.get(2).toString());
         txtNote.setText(data.get(4).toString());
     }

@@ -33,7 +33,7 @@ public class OrderDetailEditForm extends javax.swing.JFrame {
         initComponents();
         this.OrderID = data.get(0).toString();
         this.VegID =data.get(1).toString();
-        cbVegeID.getModel().setSelectedItem((int) data.get(1));
+        cbVegeID.getModel().setSelectedItem(data.get(1));
         txtQuantity.setText(data.get(2).toString());
         txtPrice.setText(data.get(3).toString());
 
