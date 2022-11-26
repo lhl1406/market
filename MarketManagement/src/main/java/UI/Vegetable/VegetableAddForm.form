@@ -237,18 +237,9 @@
         <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbCateID">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="11">
+              <StringArray count="2">
                 <StringItem index="0" value="CateID"/>
-                <StringItem index="1" value="1"/>
-                <StringItem index="2" value="1"/>
-                <StringItem index="3" value="1"/>
-                <StringItem index="4" value="1"/>
-                <StringItem index="5" value="1"/>
-                <StringItem index="6" value="1"/>
-                <StringItem index="7" value="1"/>
-                <StringItem index="8" value="1"/>
-                <StringItem index="9" value="1"/>
-                <StringItem index="10" value="1"/>
+                <StringItem index="1" value=" "/>
               </StringArray>
             </Property>
           </Properties>

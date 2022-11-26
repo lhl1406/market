@@ -112,6 +112,8 @@ public class CustomerDAL {
             
             result = 1;
         } catch (Exception ex) {
+            
+            System.out.println("hibernateMarket.DAL.CustomerDAL.updateCustomer() not ad ----");
             System.out.println(ex);
             result = -1;
         }

@@ -134,7 +134,7 @@ public class VegetableAddForm extends javax.swing.JFrame {
             }
         });
 
-        cbCateID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CateID", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" }));
+        cbCateID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CateID", " " }));
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
