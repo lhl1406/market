@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -23,6 +25,7 @@ public class ForTimeForm extends javax.swing.JFrame {
     MenuForm home;
     List<Object[][]> data = null;
     StatisticalBLL sbll = new StatisticalBLL();
+
     /**
      * Creates new form ForTimeForm
      */
@@ -45,8 +48,9 @@ public class ForTimeForm extends javax.swing.JFrame {
             }
         });
     }
+
     public void init() {
-        data = sbll.statisticalForTime("2021-08-15", "2022-08-16", -1);
+        data = sbll.statisticalForTime("2021-01-1", "2022-1-1", -1, -1);
         tbStatistical.fixTable(jScrollPane2);
     }
 
@@ -63,10 +67,22 @@ public class ForTimeForm extends javax.swing.JFrame {
 //        data = sbll.statisticalForProduct("2021-08-15", "2022-08-16", -1);
         DefaultTableModel model = convertSatistical(data);
         tbStatistical.setModel(model);
+        setTotal();
 
     }
+
+    private void setTotal() {
+        int length = tbStatistical.getRowCount();
+        TableModel model = tbStatistical.getModel();
+        float total = 0;
+        for (int i = 0; i < length; i++) {
+            total += Float.parseFloat(model.getValueAt(i, 1).toString());
+        }
+        txtSumTotal.setText(total + "vnd");
+    }
+
     private DefaultTableModel convertSatistical(List<Object[][]> dataStatistical) {
-        String[] columnNames = {"No", "Date", "Total"};
+        String[] columnNames = {"No", "Total", "Date"};
         int lenght = dataStatistical.size();
         int i = 0;
         Object data[][];
@@ -83,7 +99,6 @@ public class ForTimeForm extends javax.swing.JFrame {
         }
         return new DefaultTableModel(data, columnNames);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,6 +173,11 @@ public class ForTimeForm extends javax.swing.JFrame {
         btnView.setColorClick(new java.awt.Color(43, 147, 72));
         btnView.setColorOver(new java.awt.Color(128, 185, 24));
         btnView.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnViewMouseClicked(evt);
+            }
+        });
 
         txtMonth.setText("mm/yyyy");
         txtMonth.addActionListener(new java.awt.event.ActionListener() {
@@ -224,6 +244,10 @@ public class ForTimeForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtSumTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +265,8 @@ public class ForTimeForm extends javax.swing.JFrame {
                                 .addGap(33, 33, 33)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtQuater, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtFromTime, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtFromTime, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,15 +274,8 @@ public class ForTimeForm extends javax.swing.JFrame {
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtToTime, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panel1Layout.createSequentialGroup()
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel1)
-                            .addGap(55, 55, 55))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(txtToTime, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,6 +360,35 @@ public class ForTimeForm extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMouseClicked
+
+        String txtFrom = "2021-08-15";
+        String txtTo = "2022-08-16";
+        String Regex = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
+
+        if (txtFromTime.getText().matches(Regex) && txtToTime.getText().matches(Regex)) {
+
+            txtFrom = txtFromTime.getText();
+            txtTo = txtToTime.getText();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error Format {yyyy/mm/dd}", "message", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int Quater = -1;
+        int Month = -1;
+        if (!txtQuater.getText().equals("")) {
+            Quater = Integer.parseInt(txtQuater.getText());
+        }
+        if (!txtMonth.getText().equals("")) {
+            Month = Integer.parseInt(txtMonth.getText());
+        }
+        data = sbll.statisticalForTime(txtFrom, txtTo, Quater, Month);
+        DefaultTableModel model = convertSatistical(data);
+        tbStatistical.setModel(model);
+        setTotal();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewMouseClicked
 
     /**
      * @param args the command line arguments

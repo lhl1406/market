@@ -6,11 +6,7 @@ package hibernateMarket.DAL;
 
 import hibernateMarket.DAL.HibernateUtils;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -28,7 +24,7 @@ public class StatisticalDAL {
 //    SELECT v.VegetableID, o.OrderID, v.VegetableName, SUM(d.Quantity), SUM(d.Price)*d.Quantity, c.CustomerID, o.Date from vegetable v, orderdetail d, orders o, customers c where v.VegetableID = d.VegetableID and o.OrderID = d.OrderID and c.CustomerID = o.CustomerID and o.Date >= '2021/08/15' and o.Date <= '2021/08/16' and v.VegetableID = 1 GROUP BY VegetableID, o.OrderID ORDER BY o.Date DESC;
 
     public List<Object[][]> statisticalForTime(String dateQuery) {
-        String hql = "SELECT SUM(o.Total), o.Date from orders o where " + dateQuery;
+        String hql = "SELECT SUM(o.Total), o.Date from orders o where " + dateQuery + " Group By o.Date";
         System.out.println(hql);
         Query query = session.createNativeQuery(hql);
         List results = query.list();
