@@ -74,25 +74,23 @@ public class ForProductForm extends javax.swing.JFrame {
             cbCategory.addItem(ListO.get(i).getCatagoryID());
         }
     }
-     private void setTotal() {
+
+    private void setTotal() {
         int length = tbStatistical.getRowCount();
         TableModel model = tbStatistical.getModel();
         float total = 0;
-        for(int i = 0; i< length; i++) {
+        for (int i = 0; i < length; i++) {
             total += Float.parseFloat(model.getValueAt(i, 4).toString());
         }
         txtSumTotal.setText(total + "vnd");
     }
 
     public void LoadStatisticalForProduct() throws Exception {
-//        data = sbll.statisticalForProduct("2021-08-15", "2022-08-16", -1);
         DefaultTableModel model = convertSatistical(data);
         tbStatistical.setModel(model);
         setTotal();
 
     }
-
-
 
     private DefaultTableModel convertSatistical(List<Object[][]> dataStatistical) {
         String[] columnNames = {"OrderID", "Name", "Quantity", "Price", "Total", "CustomerID", "Date"};
@@ -341,17 +339,17 @@ public class ForProductForm extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
-   
+
     private void cbCategoryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCategoryItemStateChanged
-        String txtFrom = "2021-08-15";
-        String txtTo = "2022-08-16";
+        String txtFrom = "2010-08-15";
+        String txtTo = "2030-08-16"; // Time default
         String Regex = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
-        
+
         if (txtFromTime.getText().matches(Regex) && txtToTime.getText().matches(Regex)) {
             txtFrom = txtFromTime.getText();
             txtTo = txtToTime.getText();
         }
-       
+
         if (cbCategory.getSelectedItem().toString().equals("all")) {
             try {
                 data = sbll.statisticalForProduct(txtFrom, txtTo, -1);
@@ -375,18 +373,17 @@ public class ForProductForm extends javax.swing.JFrame {
     }//GEN-LAST:event_cbCategoryItemStateChanged
 
     private void btnViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMouseClicked
-        // xử lý k nhập hoặc sai
-        String txtFrom = "2021-08-15";
-        String txtTo = "2022-08-16";
+        String txtFrom = "2010-08-15";
+        String txtTo = "2030-08-16"; // Time default
         String Regex = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
-        
+
         if (txtFromTime.getText().matches(Regex) && txtToTime.getText().matches(Regex)) {
-            
+
             txtFrom = txtFromTime.getText();
             txtTo = txtToTime.getText();
         } else {
-             JOptionPane.showMessageDialog(this, "Error Format {yyyy/mm/dd}", "message", JOptionPane.ERROR_MESSAGE);
-             return;
+            JOptionPane.showMessageDialog(this, "Error Format {yyyy/mm/dd}", "message", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         int CategoryID = -1;
         if (!cbCategory.getSelectedItem().toString().equals("all")) {
@@ -400,7 +397,7 @@ public class ForProductForm extends javax.swing.JFrame {
 
     private void txtFromTimeInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtFromTimeInputMethodTextChanged
 
-        
+
     }//GEN-LAST:event_txtFromTimeInputMethodTextChanged
 
     /**

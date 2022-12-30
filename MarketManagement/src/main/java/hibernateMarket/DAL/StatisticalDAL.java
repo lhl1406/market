@@ -24,14 +24,14 @@ public class StatisticalDAL {
 //    SELECT v.VegetableID, o.OrderID, v.VegetableName, SUM(d.Quantity), SUM(d.Price)*d.Quantity, c.CustomerID, o.Date from vegetable v, orderdetail d, orders o, customers c where v.VegetableID = d.VegetableID and o.OrderID = d.OrderID and c.CustomerID = o.CustomerID and o.Date >= '2021/08/15' and o.Date <= '2021/08/16' and v.VegetableID = 1 GROUP BY VegetableID, o.OrderID ORDER BY o.Date DESC;
 
     public List<Object[][]> statisticalForTime(String dateQuery) {
-        String hql = "SELECT SUM(o.Total), o.Date from order1 o where " + dateQuery + " Group By o.Date";
+        String hql = "SELECT SUM(o.Total), o.Date from order1 o where " 
+                        + dateQuery + " Group By o.Date";
         System.out.println(hql);
         Query query = session.createNativeQuery(hql);
         List results = query.list();
         return results;
     }
 
-    //SELECT SUM(d.Price)*d.Quantity, MONTH(o.Date) from vegetable v, orderdetail d, orders o, customers c where v.VegetableID = d.VegetableID and o.OrderID = d.OrderID and c.CustomerID = o.CustomerID and MONTH(o.Date) = 8 GROUP BY MONTH(o.Date);
     public List<Object[][]> statisticalForProduct(String startDate, String endDate, String categoryID) {
         String hql = "SELECT o.OrderID, v.VegetableName, SUM(d.Quantity), v.Price"
                 + ", v.Price * SUM(d.Quantity) , c.CustomerID, o.Date, v.VegetableID from vegetable v,"
@@ -39,7 +39,6 @@ public class StatisticalDAL {
                 + " and o.OrderID = d.OrderID and c.CustomerID = o.CustomerID "
                 + " and o.Date >= '" + startDate + "' and o.Date <= '" + endDate
                 + "' GROUP BY VegetableID";
-//        String hql = "SELECT FullName, Address FROM Customers";
         Query query = session.createNativeQuery(hql);
         List<Object[][]> listResult = query.list();
         return listResult;

@@ -64,7 +64,6 @@ public class ForTimeForm extends javax.swing.JFrame {
     }
 
     public void LoadStatisticalForTime() throws Exception {
-//        data = sbll.statisticalForProduct("2021-08-15", "2022-08-16", -1);
         DefaultTableModel model = convertSatistical(data);
         tbStatistical.setModel(model);
         setTotal();
@@ -179,7 +178,6 @@ public class ForTimeForm extends javax.swing.JFrame {
             }
         });
 
-        txtMonth.setText("mm/yyyy");
         txtMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMonthActionPerformed(evt);
@@ -219,7 +217,7 @@ public class ForTimeForm extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(20, 54, 66));
         jLabel7.setText("Time:");
 
-        txtFromTime.setText("dd/mm/yyyy");
+        txtFromTime.setText("yyyy/mm/dd");
         txtFromTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFromTimeActionPerformed(evt);
@@ -229,7 +227,7 @@ public class ForTimeForm extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("-");
 
-        txtToTime.setText("dd/mm/yyyy");
+        txtToTime.setText("yyyy/mm/dd");
         txtToTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtToTimeActionPerformed(evt);
@@ -363,8 +361,8 @@ public class ForTimeForm extends javax.swing.JFrame {
 
     private void btnViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMouseClicked
 
-        String txtFrom = "2021-08-15";
-        String txtTo = "2022-08-16";
+        String txtFrom = "2010-08-15";
+        String txtTo = "2030-08-16"; // Time default
         String Regex = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
         if (txtFromTime.getText().matches(Regex) && txtToTime.getText().matches(Regex)) {
